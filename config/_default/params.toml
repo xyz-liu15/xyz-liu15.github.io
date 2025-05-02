@@ -327,7 +327,7 @@ disableThemeInject = false
   Ko-Fi = ""
   BuyMeaCoffee = ""
   Linktree = ""
-  QQ = ""
+  QQ = "1722629716"
   QQGroup = "" # https://qun.qq.com/join.html
   Diaspora = ""
   CSDN = ""
@@ -342,7 +342,7 @@ disableThemeInject = false
   RootMe = ""
   Feishu = ""
   TryHackMe = ""
-  Douyin = ""
+  Douyin = "MS4wLjABAAAAoWp5f5QrObZTlIt09rbHcbkBJmuYsa5Sp7YoP7hKSjekJSlbvz-7-dMB_n9g3Abv"
   TikTok = ""
   Credly = ""
   Phone = ""
@@ -368,7 +368,7 @@ disableThemeInject = false
   # cursor duration after typing finishing (measured in milliseconds, "-1" means unlimited)
   duration = -1
   # FixIt 0.2.18 | NEW whether your strings will continuously loop after completing
-  loop = false
+  loop = true
 
 # FixIt 0.2.15 | NEW Mermaid config
 [mermaid]
