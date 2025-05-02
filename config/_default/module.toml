@@ -7,6 +7,8 @@
   path = "github.com/hugo-fixit/FixIt"
 [[imports]]
   path = "github.com/hugo-fixit/shortcode-docs-bookmark"
+[[imports]]
+  path = "github.com/hugo-fixit/cmpt-translate"
 
 [hugoVersion]
   extended = true
