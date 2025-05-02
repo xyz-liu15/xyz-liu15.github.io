@@ -6,7 +6,7 @@
 # FixIt 0.2.15 | CHANGED FixIt theme version
 version = "0.3.X" # e.g. "0.2.X", "0.2.15", "v0.2.15" etc.
 # site description
-description = "This is my new Hugo FixIt site"
+description = "时光和你都很美"
 # site keywords
 keywords = ["Hugo", "FixIt"]
 # site default theme ["light", "dark", "auto"]
@@ -19,7 +19,7 @@ dateFormat = "2006-01-02"
 # website images for Open Graph and Twitter Cards
 images = []
 # FixIt 0.2.12 | NEW enable PWA
-enablePWA = false
+enablePWA = true
 # FixIt 0.2.14 | NEW whether to add external Icon for external links automatically
 externalIcon = false
 # FixIt 0.3.13 | NEW whether to capitalize titles
@@ -40,15 +40,15 @@ disableThemeInject = false
 
 # Author Configuration
 [author]
-  name = "Lruihao"
-  email = "1024@lruihao.cn"
-  link = "https://github.com/Lruihao"
-  avatar = ""
+  name = "刘十五"
+  email = "xyz.liu15@gmail.com"
+  link = "https://github.com/xyz-liu15"
+  avatar = "https://i.pinimg.com/736x/cd/ae/3b/cdae3b65b08001cc46fe0c932e786ea1.jpg"
 
 # FixIt 0.3.0 | NEW public Git repository information only then enableGitInfo is true
 [gitInfo]
   # e.g. "https://github.com/hugo-fixit/docs"
-  repo = ""
+  repo = "https://github.com/xyz-liu15/xyz-liu15.github.io"
   branch = "main"
   # the content directory path relative to the root of the repository
   dir = "content"
@@ -59,7 +59,7 @@ disableThemeInject = false
 # App icon config
 [app]
   # optional site title override for the app when added to an iOS home screen or Android launcher
-  title = "Hugo FixIt Blog"
+  title = "刘十五的个人博客"
   # whether to omit favicon resource links
   noFavicon = false
   # modern SVG favicon to use in place of older style .png and .ico files
@@ -115,9 +115,9 @@ disableThemeInject = false
   # Header title config
   [header.title]
     # URL of the LOGO
-    logo = "/images/fixit.min.svg"
+    logo = "https://i.pinimg.com/736x/cd/ae/3b/cdae3b65b08001cc46fe0c932e786ea1.jpg"
     # title name
-    name = ""
+    name = "刘十五"
     # you can add extra information before the name (HTML format is supported), such as icons
     pre = ""
     # you can add extra information after the name (HTML format is supported), such as icons
@@ -127,9 +127,9 @@ disableThemeInject = false
   # FixIt 0.2.12 | NEW Header subtitle config
   [header.subtitle]
     # subtitle name
-    name = ""
+    name = "代码是思维的显性化！"
     # whether to use typeit animation for subtitle name
-    typeit = false
+    typeit = true
 
 # FixIt 0.2.18 | NEW Breadcrumb config
 [breadcrumb]
@@ -237,15 +237,15 @@ disableThemeInject = false
   [home.profile]
     enable = true
     # Gravatar Email for preferred avatar in home page
-    gravatarEmail = "xx@xx.com"
+    gravatarEmail = ""
     # URL of avatar shown in home page
-    avatarURL = ""
+    avatarURL = "https://i.pinimg.com/736x/cd/ae/3b/cdae3b65b08001cc46fe0c932e786ea1.jpg"
     # FixIt 0.2.17 | NEW identifier of avatar menu link
     avatarMenu = ""
     # title shown in home page (HTML format is supported)
-    title = ""
+    title = "时光很匆忙，别错过落日与夕阳"
     # subtitle shown in home page (HTML format is supported)
-    subtitle = "This is my new Hugo FixIt site"
+    subtitle = "时光和你都很美"
     # whether to use typeit animation for subtitle
     typeit = true
     # whether to show social links
@@ -260,9 +260,9 @@ disableThemeInject = false
 
 # FixIt 0.2.16 | CHANGED Social config about the author
 [social]
-  GitHub = ""
+  GitHub = "https://github.com/xyz-liu15"
   Linkedin = ""
-  Twitter = ""
+  Twitter = "https://x.com/liu_xyz15"
   Instagram = ""
   Facebook = ""
   Telegram = ""
@@ -321,7 +321,7 @@ disableThemeInject = false
   Gitea = ""
   XMPP = ""
   Matrix = ""
-  Bilibili = ""
+  Bilibili = "1370500297"
   ORCID = ""
   Liberapay = ""
   Ko-Fi = ""
@@ -346,7 +346,7 @@ disableThemeInject = false
   TikTok = ""
   Credly = ""
   Phone = ""
-  Email = ""
+  Email = "xyz.liu15@gmail.com"
   RSS = true
   # custom social links like the following
   # [social.twitter]
@@ -490,7 +490,7 @@ disableThemeInject = false
 
 # FixIt 0.2.14 | NEW GitHub banner in the top-right or top-left corner
 [githubCorner]
-  enable = false
+  enable = true
   permalink = "https://github.com/hugo-fixit/FixIt"
   title = "View source on GitHub"
   position = "right" # ["left", "right"]
