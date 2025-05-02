@@ -884,22 +884,24 @@ disableThemeInject = false
       katex = false
     # FixIt 0.2.14 | NEW Giscus comments config
     [page.comment.giscus]
-      enable = false
-      repo = ""
-      repoId = ""
-      category = ""
-      categoryId = ""
-      mapping = ""
-      origin = "https://giscus.app" # FixIt NEW | 0.3.7 Or set it to your self-hosted domain
-      strict = "0" # FixIt NEW | 0.2.18
-      term = ""
-      reactionsEnabled = "1"
-      emitMetadata = "0"
-      inputPosition = "bottom" # ["top", "bottom"]
-      lang = ""
-      lightTheme = "light"
-      darkTheme = "dark"
-      lazyLoad = true
+      enable = true # Make sure this is true to enable Giscus
+      # --- Values from your Giscus script --- 
+      repo = "xyz-liu15/xyz-liu15.github.io"
+      repoId = "R_kgDOOjUBdw"
+      category = "Announcements"
+      categoryId = "DIC_kwDOOjUBd84Cps3L"
+      mapping = "pathname" # From your script
+      strict = "0" # From your script
+      reactionsEnabled = "1" # From your script
+      emitMetadata = "0" # From your script
+      inputPosition = "bottom" # From your script
+      theme = "preferred_color_scheme" # From your script
+      lang = "zh-CN" # From your script
+      # --- Optional: You can add these for better control --- 
+      # term = "" # Usually leave empty when mapping is pathname
+      # lightTheme = "light" # Optional: specify light theme explicitly
+      # darkTheme = "dark" # Optional: specify dark theme explicitly
+      lazyLoad = true # Optional: Load Giscus lazily
   # Third-party library config
   [page.library]
     [page.library.css]
