@@ -1,6 +1,6 @@
 {
-  "name": "刘十五的个人博客",
-  "short_name": "刘十五",
+  "name": "MyWebSite",
+  "short_name": "MySite",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",

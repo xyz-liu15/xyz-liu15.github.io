@@ -1,0 +1,14 @@
+[readMore]
+other = "Read More"
+
+[readingTime]
+other = "Reading time: {{ .Count }}min"
+
+[wordCount]
+other = "{{ .Count }} words"
+
+[tag]
+other = "Tag"
+
+[category]
+other = "Category"

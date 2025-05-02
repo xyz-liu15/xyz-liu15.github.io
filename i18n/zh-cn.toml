@@ -1,0 +1,14 @@
+[readMore]
+other = "阅读更多"
+
+[readingTime]
+other = "阅读时间：{{ .Count }}分钟"
+
+[wordCount]
+other = "{{ .Count }}字"
+
+[tag]
+other = "标签"
+
+[category]
+other = "分类"
