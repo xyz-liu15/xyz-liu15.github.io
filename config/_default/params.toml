@@ -117,7 +117,7 @@ disableThemeInject = false
     # URL of the LOGO
     logo = "https://i.pinimg.com/736x/cd/ae/3b/cdae3b65b08001cc46fe0c932e786ea1.jpg"
     # title name
-    name = "刘十五"
+    name = "刘fifteen"
     # you can add extra information before the name (HTML format is supported), such as icons
     pre = ""
     # you can add extra information after the name (HTML format is supported), such as icons
@@ -169,11 +169,11 @@ disableThemeInject = false
     themeLogo = true
   # FixIt 0.2.17 | CHANGED Site creation time
   [footer.siteTime]
-    enable = false
+    enable = true
     animate = true
     icon = "fa-solid fa-heartbeat"
-    pre = ""
-    value = "2025-05-02T08:39:21.171Z" # e.g. "2021-12-18T16:15:22+08:00"
+    pre = "本站已运行"
+    value = "2025-05-02T08:39:21.171Z"  # 网站创建时间 # e.g. "2021-12-18T16:15:22+08:00"
   # FixIt 0.2.17 | NEW footer lines order, optional values: ["first", 0, 1, 2, 3, 4, 5, "last"]
   [footer.order]
     powered = 0
@@ -403,9 +403,9 @@ disableThemeInject = false
 # FixIt 0.2.12 | NEW Watermark config
 # Detail config see https://github.com/Lruihao/watermark#readme
 [watermark]
-  enable = false
+  enable = true
   # watermark's text (HTML format is supported)
-  content = ""
+  content = "刘fifteen的博客"
   # watermark's transparency
   opacity = 0.1
   # watermark's width. unit: px
@@ -425,13 +425,11 @@ disableThemeInject = false
 
 # FixIt 0.3.10 | NEW Busuanzi count
 [busuanzi]
-  # whether to enable busuanzi count
-  enable = false
-  # busuanzi count core script source. Default is https://vercount.one/js
+  enable = true
   source = "https://vercount.one/js"
-  # whether to show the site views
+  # 是否显示站点访问量
   siteViews = true
-  # whether to show the page views
+  # 是否显示页面访问量
   pageViews = true
 
 # Site verification code config for Google/Bing/Yandex/Pinterest/Baidu/360/Sogou
@@ -456,8 +454,7 @@ disableThemeInject = false
   enable = false
   # Google Analytics
   [analytics.google]
-    id = ""
-    # whether to anonymize IP
+    id = "G-XXXXXXXXXX"  # 您的Google Analytics ID
     anonymizeIP = true
   # Fathom Analytics
   [analytics.fathom]
@@ -511,26 +508,23 @@ disableThemeInject = false
 
 # FixIt 0.2.16 | NEW Reading progress bar
 [readingProgress]
-  enable = false
-  # Available values: ["left", "right"]
+  enable = true
+  # 起始位置 ["left", "right"]
   start = "left"
-  # Available values: ["top", "bottom"]
+  # 位置 ["top", "bottom"]
   position = "top"
   reversed = false
-  light = ""
-  dark = ""
-  height = "2px"
+  light = "#33a6b8"  # 亮色模式颜色
+  dark = "#33a6b8"  # 暗色模式颜色
+  height = "2px"  # 高度
 
 # FixIt 0.2.17 | NEW Progress bar in the top during page loading.
 # For more information: https://github.com/CodeByZach/pace
 [pace]
-  enable = false
-  # All available colors:
-  # ["black", "blue", "green", "orange", "pink", "purple", "red", "silver", "white", "yellow"]
+  enable = true
+  # 颜色
   color = "blue"
-  # All available themes:
-  # ["barber-shop", "big-counter", "bounce", "center-atom", "center-circle", "center-radar", "center-simple",
-  # "corner-indicator", "fill-left", "flash", "flat-top", "loading-bar", "mac-osx", "material", "minimal"]
+  # 主题
   theme = "minimal"
 
 # FixIt 0.3.10 | NEW Global Feed config for RSS, Atom and JSON feed.
