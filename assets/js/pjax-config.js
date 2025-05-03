@@ -49,7 +49,7 @@ class PjaxConfig {
   /**
    * 重新加载页面上的脚本
    */
-  // 在reloadScripts方法中添加统计代码重载
+  // 在reloadScripts方法中添加
   reloadScripts() {
     // 重新初始化FixItBlog
     if (window.fixitBlog) {
@@ -58,6 +58,7 @@ class PjaxConfig {
     
     // 重新加载其他可能需要的脚本
     this.loadScript('/js/custom.js');
+    this.loadScript('/js/ai-summary.js'); // 添加这一行
     
     // 如果有其他需要重新加载的脚本，可以在这里添加
   

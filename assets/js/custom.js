@@ -55,7 +55,8 @@ class FixItBlog {
         'search': 'Search',
         'menu': 'Menu',
         'home': 'Home',
-        'posts': 'Posts'
+        'posts': 'Posts',
+        'ai-summary': 'Article Summary' // 添加这一行
         // 可以根据需要添加更多翻译
       },
       'zh-cn': {
@@ -65,7 +66,8 @@ class FixItBlog {
         'search': '搜索',
         'menu': '菜单',
         'home': '首页',
-        'posts': '文章'
+        'posts': '文章',
+        'ai-summary': '文章摘要' // 添加这一行
         // 可以根据需要添加更多翻译
       }
     };
@@ -91,6 +93,76 @@ class FixItBlog {
       searchInput.placeholder = dict['search'] + '...';
     }
 
+    // 翻译AI摘要元素
+    const aiSummaryTitle = document.querySelector('.ai-summary-title');
+    if (aiSummaryTitle && dict['ai-summary']) {
+      aiSummaryTitle.textContent = dict['ai-summary'];
+    }
+
+    return this;
+  }
+
+  /**
+   * 初始化AI摘要功能
+   * @returns {FixItBlog}
+   */
+  initAISummary() {
+    // 延迟初始化，确保ai-summary.js已加载
+    setTimeout(() => {
+      if (typeof window.AISmmary !== 'undefined') {
+        // 配置AI摘要
+        window.aiConfig.aiApi = "https://ai-summary.xyz-liu15.workers.dev";
+        
+        // 尝试多个可能的选择器
+        const selectors = ['article', '.single .content', '#content-wrapper', '.content', 'main'];
+        let foundSelector = false;
+        
+        for (const selector of selectors) {
+          if (document.querySelector(selector)) {
+            window.aiConfig.aiSelector = selector;
+            foundSelector = true;
+            console.log('找到有效选择器:', selector);
+            break;
+          }
+        }
+        
+        if (!foundSelector) {
+          console.warn('未找到有效的内容选择器，使用默认值');
+          window.aiConfig.aiSelector = 'article';
+        }
+        
+        window.aiConfig.reportUrl = "mailto:xyz.liu15@gmail.com?subject=文章摘要投诉&body=投诉网址：="+location.href;
+        // 修改路径匹配规则，使其能匹配多语言路径
+        window.aiConfig.enableAIPathRegex = /\/posts\//; // 只要路径中包含/posts/就匹配
+        
+        // 检查当前路径是否匹配
+        const pathMatches = window.aiConfig.enableAIPathRegex.test(location.pathname);
+        console.log('当前路径:', location.pathname, '是否匹配:', pathMatches);
+        
+        if (pathMatches) {
+          // 初始化AI摘要
+          window.AISmmary.init(window.aiConfig);
+          console.log('AI摘要初始化完成');
+        } else {
+          console.log('当前页面不符合AI摘要路径规则，跳过初始化');
+        }
+      } else {
+        console.error('AISmmary未定义，请检查ai-summary.js是否正确加载');
+        
+        // 尝试手动加载脚本
+        const script = document.createElement('script');
+        script.src = '/js/ai-summary.js';
+        script.onload = () => {
+          console.log('AI摘要脚本已手动加载，重新尝试初始化');
+          this.initAISummary();
+        };
+        script.onerror = () => {
+          console.error('无法加载AI摘要脚本，请检查文件路径');
+        };
+        document.head.appendChild(script);
+      }
+    }, 1000); // 延迟1秒执行，确保其他脚本已加载
+    
     return this;
   }
 
@@ -101,6 +173,7 @@ class FixItBlog {
   init() {
     this.hello();
     this.setupLanguage();
+    this.initAISummary(); // 添加这一行
     return this;
   }
 }
