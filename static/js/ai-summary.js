@@ -49,33 +49,46 @@ const AISmmary = {
     const style = document.createElement('style');
     style.textContent = `
       .ai-summary {
-        margin: 20px 0;
-        padding: 15px;
-        border-radius: 8px;
-        background-color: rgba(240, 240, 240, 0.7);
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin: 30px auto;
+        padding: 20px;
+        border-radius: 12px;
+        background-color: rgba(240, 240, 240, 0.8);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        border-left: 4px solid #6b9eef;
+        max-width: 100%;
+        box-sizing: border-box;
       }
       .ai-summary-header {
         display: flex;
         align-items: center;
-        margin-bottom: 10px;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
       }
       .ai-summary-icon {
-        font-size: 20px;
-        margin-right: 8px;
+        font-size: 24px;
+        margin-right: 10px;
+        color: #6b9eef;
       }
       .ai-summary-title {
         font-weight: bold;
-        font-size: 16px;
+        font-size: 18px;
         margin-right: auto;
+        color: #333;
       }
       .ai-summary-model {
         font-size: 12px;
         color: #666;
+        background-color: rgba(107, 158, 239, 0.1);
+        padding: 3px 8px;
+        border-radius: 12px;
       }
       .ai-summary-content {
-        line-height: 1.6;
-        margin-bottom: 10px;
+        line-height: 1.8;
+        margin-bottom: 15px;
+        color: #444;
+        font-size: 15px;
       }
       .ai-summary-loading {
         color: #666;
@@ -86,31 +99,142 @@ const AISmmary = {
         justify-content: space-between;
         font-size: 12px;
         color: #888;
+        padding-top: 10px;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+      }
+      .ai-summary-disclaimer {
+        max-width: 80%;
       }
       .ai-summary-report {
-        color: #888;
+        color: #6b9eef;
         text-decoration: none;
+        font-weight: 500;
       }
       .ai-summary-report:hover {
         text-decoration: underline;
       }
       [data-theme='dark'] .ai-summary {
-        background-color: rgba(50, 50, 50, 0.7);
+        background-color: rgba(40, 40, 40, 0.8);
+        border-left: 4px solid #5183d7;
+      }
+      [data-theme='dark'] .ai-summary-title {
+        color: #eee;
+      }
+      [data-theme='dark'] .ai-summary-content {
+        color: #ccc;
+      }
+      [data-theme='dark'] .ai-summary-model {
+        background-color: rgba(81, 131, 215, 0.2);
+        color: #aaa;
       }
       [data-theme='dark'] .ai-summary-model,
       [data-theme='dark'] .ai-summary-footer,
+      [data-theme='dark'] .ai-summary-disclaimer {
+        color: #999;
+      }
       [data-theme='dark'] .ai-summary-report {
-        color: #aaa;
+        color: #5183d7;
+      }
+      
+      /* 移动端适配 */
+      @media (max-width: 768px) {
+        .ai-summary {
+          margin: 20px auto;
+          padding: 15px;
+        }
+        .ai-summary-title {
+          font-size: 16px;
+        }
+        .ai-summary-content {
+          font-size: 14px;
+        }
       }
     `;
     document.head.appendChild(style);
 
-    // 插入到内容区域的顶部
+    // 查找文章内容元素
     const contentElement = document.querySelector(this.config.aiSelector);
-    if (contentElement) {
+    if (!contentElement) {
+      console.error('未找到内容元素:', this.config.aiSelector);
+      return;
+    }
+    
+    // 查找文章标题元素
+    const titleElement = document.querySelector('.single-title') || 
+                         document.querySelector('h1.title') || 
+                         document.querySelector('article h1') || 
+                         document.querySelector('.post-title');
+    
+    // 查找目录元素
+    const tocElement = document.querySelector('#toc-auto') || 
+                      document.querySelector('.toc') ||
+                      document.querySelector('.table-of-contents') ||
+                      document.querySelector('[id^="TableOfContents"]');
+    
+    if (titleElement) {
+      // 如果找到标题元素，将摘要插入到标题之后
+      const parent = titleElement.parentNode;
+      const nextElement = this.findNextContentElement(titleElement);
+      
+      if (nextElement) {
+        parent.insertBefore(container, nextElement);
+        console.log('AI摘要已插入到标题和内容之间');
+      } else {
+        // 如果找不到下一个元素，尝试插入到标题后面
+        if (titleElement.nextSibling) {
+          parent.insertBefore(container, titleElement.nextSibling);
+        } else {
+          parent.appendChild(container);
+        }
+        console.log('AI摘要已插入到标题后面');
+      }
+      
+      // 不移动目录元素，保持其原有位置
+      if (tocElement) {
+        console.log('保持目录在原有位置');
+      }
+    } else {
+      // 如果找不到标题，回退到原来的方案
       contentElement.insertBefore(container, contentElement.firstChild);
+      console.log('未找到标题元素，AI摘要已插入到内容区域顶部');
     }
   },
+  
+  // 查找标题后的内容元素
+  findNextContentElement(titleElement) {
+    // 尝试查找常见的内容开始标记
+    let current = titleElement.nextElementSibling;
+    
+    while (current) {
+      // 检查是否是内容相关元素
+      if (current.tagName === 'P' || 
+          current.tagName === 'DIV' && (current.classList.contains('content') || current.classList.contains('post-content')) ||
+          current.tagName === 'ARTICLE' ||
+          current.tagName === 'SECTION') {
+        return current;
+      }
+      
+      // 检查是否是元数据元素，通常在标题和内容之间
+      if (current.classList.contains('post-meta') || 
+          current.classList.contains('post-info') ||
+          current.classList.contains('post-header')) {
+        // 跳过元数据，继续查找下一个元素
+        current = current.nextElementSibling;
+        continue;
+      }
+      
+      // 如果找到了目录，也应该在目录之前插入
+      if (current.id === 'toc-auto' || 
+          current.classList.contains('toc') ||
+          current.classList.contains('table-of-contents')) {
+        return current;
+      }
+      
+      current = current.nextElementSibling;
+    }
+    
+    return null;
+  }, // 添加逗号
 
   fetchSummary() {
     const contentElement = document.querySelector(this.config.aiSelector);
