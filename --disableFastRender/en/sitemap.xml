@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>http://localhost:1313/en/categories/</loc>
+    <lastmod>2025-05-03T09:38:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="zh-cn" href="http://localhost:1313/zh-cn/categories/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:1313/en/categories/"/>
+  </url>
+  <url>
+    <loc>http://localhost:1313/en/posts/4b5bcb5/</loc>
+    <lastmod>2025-05-03T09:38:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/en/</loc>
+    <lastmod>2025-05-03T09:38:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="zh-cn" href="http://localhost:1313/zh-cn/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:1313/en/"/>
+  </url>
+  <url>
+    <loc>http://localhost:1313/en/posts/</loc>
+    <lastmod>2025-05-03T09:38:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="zh-cn" href="http://localhost:1313/zh-cn/posts/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:1313/en/posts/"/>
+  </url>
+  <url>
+    <loc>http://localhost:1313/en/categories/programming/</loc>
+    <lastmod>2025-05-03T09:38:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/en/tags/python/</loc>
+    <lastmod>2025-05-03T09:38:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="zh-cn" href="http://localhost:1313/zh-cn/tags/python/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:1313/en/tags/python/"/>
+  </url>
+  <url>
+    <loc>http://localhost:1313/en/tags/</loc>
+    <lastmod>2025-05-03T09:38:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="zh-cn" href="http://localhost:1313/zh-cn/tags/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:1313/en/tags/"/>
+  </url>
+  <url>
+    <loc>http://localhost:1313/en/tags/tools/</loc>
+    <lastmod>2025-05-03T09:38:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/en/tags/tutorial/</loc>
+    <lastmod>2025-05-03T09:38:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/en/tags/development-tools/</loc>
+    <lastmod>2025-05-03T09:38:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/en/posts/miniconda-tutorial/</loc>
+    <lastmod>2025-05-03T09:38:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/en/categories/programming-technology/</loc>
+    <lastmod>2025-05-03T09:38:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/en/posts/writing-collection/</loc>
+    <lastmod>2025-05-03T09:38:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/en/tags/literature/</loc>
+    <lastmod>2025-05-03T09:38:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/en/tags/novels/</loc>
+    <lastmod>2025-05-03T09:38:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/en/categories/web-novels/</loc>
+    <lastmod>2025-05-03T09:38:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/en/tags/fixit/</loc>
+    <lastmod>2025-05-03T09:38:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="zh-cn" href="http://localhost:1313/zh-cn/tags/fixit/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:1313/en/tags/fixit/"/>
+  </url>
+  <url>
+    <loc>http://localhost:1313/en/categories/hello/</loc>
+    <lastmod>2025-05-03T09:38:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="zh-cn" href="http://localhost:1313/zh-cn/categories/hello/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:1313/en/categories/hello/"/>
+  </url>
+  <url>
+    <loc>http://localhost:1313/en/tags/hello/</loc>
+    <lastmod>2025-05-03T09:38:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="zh-cn" href="http://localhost:1313/zh-cn/tags/hello/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:1313/en/tags/hello/"/>
+  </url>
+  <url>
+    <loc>http://localhost:1313/en/posts/hello-world/</loc>
+    <lastmod>2025-05-03T09:38:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="zh-cn" href="http://localhost:1313/zh-cn/posts/hello-world/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:1313/en/posts/hello-world/"/>
+  </url>
+  <url>
+    <loc>http://localhost:1313/en/collections/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="zh-cn" href="http://localhost:1313/zh-cn/collections/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:1313/en/collections/"/>
+  </url>
+</urlset>

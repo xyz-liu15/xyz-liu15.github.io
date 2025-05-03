@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>编程技术 - 分类 - 刘十五</title>
+    <link>http://localhost:1313/zh-cn/categories/%E7%BC%96%E7%A8%8B%E6%8A%80%E6%9C%AF/</link>
+    <description>时光和你都很美</description>
+    <generator>Hugo 0.147.0 &amp; FixIt v0.3.20</generator>
+    <language>zh-cn</language>
+    <managingEditor>xyz.liu15@gmail.com (刘十五)</managingEditor>
+    <webMaster>xyz.liu15@gmail.com (刘十五)</webMaster>
+    <lastBuildDate>Sat, 03 May 2025 09:10:29 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/zh-cn/categories/%E7%BC%96%E7%A8%8B%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python的uv库使用详解</title>
+      <link>http://localhost:1313/zh-cn/posts/4b5bcb5/</link>
+      <pubDate>Sat, 03 May 2025 09:07:40 +0800</pubDate><author>xyz.liu15@gmail.com (刘十五)</author>
+      <guid>http://localhost:1313/zh-cn/posts/4b5bcb5/</guid>
+      <category domain="http://localhost:1313/zh-cn/categories/%E7%BC%96%E7%A8%8B%E6%8A%80%E6%9C%AF/">编程技术</category>
+      <description>uv是一个新兴的Python包管理工具，提供更快的依赖解析和安装速度，本文详细介绍了uv的安装、配置和使用方法。</description>
+    </item>
+    <item>
+      <title>Miniconda使用教程</title>
+      <link>http://localhost:1313/zh-cn/posts/8f1d8ed/</link>
+      <pubDate>Sat, 03 May 2025 08:14:21 +0800</pubDate><author>xyz.liu15@gmail.com (刘十五)</author>
+      <guid>http://localhost:1313/zh-cn/posts/8f1d8ed/</guid>
+      <category domain="http://localhost:1313/zh-cn/categories/%E7%BC%96%E7%A8%8B%E6%8A%80%E6%9C%AF/">编程技术</category>
+      <description>Miniconda的完整使用指南，包含从安装到高级使用的详细教程</description>
+    </item>
+  </channel>
+</rss>
