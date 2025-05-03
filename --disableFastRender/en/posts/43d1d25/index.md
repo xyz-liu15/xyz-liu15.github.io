@@ -2,20 +2,6 @@
 
 
 <!--more-->
-
-
-
-          
-我需要查看英文版本的Cherry Studio文章，以便进行翻译。
-        
-            
-toolName: view_files
-            
-status: success
-          
-            
-filePath: c:\Users\Lenovo\Desktop\my-blog\content\posts\全能桌面助手：Cherry-Studio.en.md
-          
 # ✨ Cherry Studio: An All-in-One Desktop Assistant That Changes How You Interact with AI ✨
 
 **—— Making AI truly work for you, not drowning you in AI**

@@ -111,6 +111,14 @@ class FixItBlog {
     setTimeout(() => {
       if (typeof window.AISummary !== 'undefined') {
         // 配置AI摘要
+        // 根据语言选择不同的API端点
+        const isEnglish = location.pathname.includes('/en/');
+        window.aiConfig.aiApi = isEnglish 
+          ? "https://ai-summary.xyz-liu15.workers.dev" 
+          : "https://qw.geekswg.top"; // 使用您之前提到的备用API
+        
+        // 修改后：
+        // 所有语言版本使用相同的API
         window.aiConfig.aiApi = "https://ai-summary.xyz-liu15.workers.dev";
         
         // 尝试多个可能的选择器
@@ -141,9 +149,25 @@ class FixItBlog {
         
         if (pathMatches) {
           // 添加错误处理
+          // 替换现有的fetchSummary重写代码
           const originalFetchSummary = window.AISummary.fetchSummary;
           window.AISummary.fetchSummary = function() {
             try {
+              console.log('开始获取AI摘要，语言:', document.documentElement.lang);
+              console.log('内容选择器:', this.config.aiSelector);
+              console.log('API地址:', this.config.aiApi);
+              
+              // 获取内容元素
+              const contentElement = document.querySelector(this.config.aiSelector);
+              if (!contentElement) {
+                console.error('未找到内容元素:', this.config.aiSelector);
+                const summaryContent = document.getElementById('ai-summary-content');
+                if (summaryContent) {
+                  summaryContent.innerHTML = '无法找到文章内容元素，请检查选择器配置。';
+                }
+                return;
+              }
+              
               originalFetchSummary.call(this);
             } catch (error) {
               console.error('AI摘要获取失败:', error);
@@ -202,3 +226,7 @@ class FixItBlog {
     window.fixitBlog.init();
   });
 })();
+// 在initAISummary方法中添加
+console.log('当前语言:', isEnglish ? 'en' : 'zh-cn');
+console.log('当前路径:', location.pathname);
+console.log('是否匹配路径规则:', /\/posts\//.test(location.pathname));

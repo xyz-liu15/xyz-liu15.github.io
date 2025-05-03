@@ -6,7 +6,7 @@
   
   // 检查是否在文章页面
   function isPostPage() {
-    return /\/posts\//.test(location.pathname);
+    return /^\/posts\//.test(location.pathname);
   }
   
   // 初始化AI摘要

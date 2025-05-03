@@ -108,5 +108,5 @@ Cherry Studio的多窗口同步对话功能，让我第一次真正实现了**AI
 ---
 
 > 作者: [刘十五](https://github.com/xyz-liu15)  
-> URL: http://localhost:1313/zh-cn/posts/f809863/  
+> URL: http://localhost:1313/zh-cn/posts/43d1d25/  
 

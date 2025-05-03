@@ -8,15 +8,15 @@
     <language>zh-cn</language>
     <managingEditor>xyz.liu15@gmail.com (刘十五)</managingEditor>
     <webMaster>xyz.liu15@gmail.com (刘十五)</webMaster>
-    <lastBuildDate>Sat, 03 May 2025 22:13:26 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 03 May 2025 23:00:44 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/zh-cn/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>全能桌面助手：Cherry Studio</title>
-      <link>http://localhost:1313/zh-cn/posts/f809863/</link>
+      <link>http://localhost:1313/zh-cn/posts/43d1d25/</link>
       <pubDate>Sat, 03 May 2025 22:09:27 +0800</pubDate><author>xyz.liu15@gmail.com (刘十五)</author>
-      <guid>http://localhost:1313/zh-cn/posts/f809863/</guid>
+      <guid>http://localhost:1313/zh-cn/posts/43d1d25/</guid>
       <category domain="http://localhost:1313/zh-cn/categories/%E5%B7%A5%E5%85%B7/">工具</category>
-      <description>全能桌面助手：Cherry Studio</description>
+      <description>Cherry Studio是一款全能桌面助手，通过一站式管理多种AI模型、提供300+专业助手和知识库功能，解决了AI时代的选择困难、效率瓶颈和隐私焦虑问题，让用户能够真正高效地利用AI而不被AI淹没。</description>
     </item>
     <item>
       <title>Python的uv库使用详解</title>
