@@ -904,6 +904,9 @@ disableThemeInject = false
       lazyLoad = true # Optional: Load Giscus lazily
   # Third-party library config
   [page.library]
+    [page.library.pjax]
+    enable = true
+    vendor = "pjax-script.html"
     [page.library.css]
       # someCSS = "some.css"
       # located in "assets/"

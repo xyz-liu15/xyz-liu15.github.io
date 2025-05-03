@@ -1,6 +1,11 @@
 ---
 title: 你好，世界
 date: 2025-05-02T08:39:21.171Z
+author:
+  name: "刘十五"
+  link: "https://github.com/xyz-liu15"
+  email: "xyz.liu15@gmail.com"
+  avatar: "https://i.pinimg.com/736x/cd/ae/3b/cdae3b65b08001cc46fe0c932e786ea1.jpg"
 tags:
 - hello
 - FixIt

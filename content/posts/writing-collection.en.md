@@ -5,10 +5,10 @@ date: 2025-05-02T23:40:05+08:00
 slug: writing-collection
 draft: false
 author:
-  name: liu15
-  link: https://github.com/xyz-liu15
-  email: xyz.liu15@gmail.com
-  avatar: https://i.pinimg.com/736x/cd/ae/3b/cdae3b65b08001cc46fe0c932e786ea1.jpg
+  name: "Liu Fifteen"
+  link: "https://github.com/xyz-liu15"
+  email: "xyz.liu15@gmail.com"
+  avatar: "https://i.pinimg.com/736x/cd/ae/3b/cdae3b65b08001cc46fe0c932e786ea1.jpg"
 description:
 keywords:
 license:

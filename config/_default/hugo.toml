@@ -96,6 +96,7 @@ defaultContentLanguageInSubdir = true
 head = [
   "inject/fixit-docs-bookmark.html",
   "inject/cmpt-translate-config.html",
+  "inject/pjax-script.html",
 ]
 menuDesktop = [ "inject/translate-menu-desktop.html", ]
 menuMobile = [ "inject/translate-menu-mobile.html", ]
