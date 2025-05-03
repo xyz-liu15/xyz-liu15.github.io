@@ -109,7 +109,7 @@ class FixItBlog {
   initAISummary() {
     // 延迟初始化，确保ai-summary.js已加载
     setTimeout(() => {
-      if (typeof window.AISmmary !== 'undefined') {
+      if (typeof window.AISummary !== 'undefined') {
         // 配置AI摘要
         window.aiConfig.aiApi = "https://ai-summary.xyz-liu15.workers.dev";
         
@@ -140,14 +140,28 @@ class FixItBlog {
         console.log('当前路径:', location.pathname, '是否匹配:', pathMatches);
         
         if (pathMatches) {
+          // 添加错误处理
+          const originalFetchSummary = window.AISummary.fetchSummary;
+          window.AISummary.fetchSummary = function() {
+            try {
+              originalFetchSummary.call(this);
+            } catch (error) {
+              console.error('AI摘要获取失败:', error);
+              const summaryContent = document.getElementById('ai-summary-content');
+              if (summaryContent) {
+                summaryContent.innerHTML = '无法连接到AI摘要服务，请检查网络连接或稍后再试。';
+              }
+            }
+          };
+          
           // 初始化AI摘要
-          window.AISmmary.init(window.aiConfig);
+          window.AISummary.init(window.aiConfig);
           console.log('AI摘要初始化完成');
         } else {
           console.log('当前页面不符合AI摘要路径规则，跳过初始化');
         }
       } else {
-        console.error('AISmmary未定义，请检查ai-summary.js是否正确加载');
+        console.error('AISummary未定义，请检查ai-summary.js是否正确加载');
         
         // 尝试手动加载脚本
         const script = document.createElement('script');

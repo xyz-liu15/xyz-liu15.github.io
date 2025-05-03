@@ -8,13 +8,13 @@
     <language>en</language>
     <managingEditor>xyz.liu15@gmail.com (刘十五)</managingEditor>
     <webMaster>xyz.liu15@gmail.com (刘十五)</webMaster>
-    <lastBuildDate>Sat, 03 May 2025 09:38:38 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 03 May 2025 21:28:22 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/en/tags/development-tools/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Miniconda Tutorial</title>
-      <link>http://localhost:1313/en/posts/miniconda-tutorial/</link>
+      <link>http://localhost:1313/en/posts/8f1d8ed/</link>
       <pubDate>Sat, 03 May 2025 08:14:21 +0800</pubDate><author>xyz.liu15@gmail.com (Liu Fifteen)</author>
-      <guid>http://localhost:1313/en/posts/miniconda-tutorial/</guid>
+      <guid>http://localhost:1313/en/posts/8f1d8ed/</guid>
       <category domain="http://localhost:1313/en/categories/programming-technology/">Programming Technology</category>
       <description>A comprehensive guide to Miniconda, from installation to advanced usage</description>
     </item>
