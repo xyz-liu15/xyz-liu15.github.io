@@ -12,7 +12,7 @@ author:
 description: Miniconda的完整使用指南，包含安装配置、环境管理、镜像源设置等详细教程
 keywords: Miniconda, Conda, Python环境管理, 虚拟环境
 license:
-comment: false
+comment: true
 weight: 0
 tags:
   - Python
@@ -40,27 +40,6 @@ repost:
 ---
 
 <!--more-->
-
-# Miniconda 使用详解报告
-
-## 目录
-
-1. **Miniconda 简介**
-2. **安装与配置**
-   - Windows
-   - macOS
-   - Linux
-3. **Miniconda vs Anaconda**
-4. **Conda 镜像源配置**
-5. **Python 虚拟环境管理**
-6. **包管理与依赖控制**
-7. **高级使用技巧**
-   - 环境导出与共享
-   - 依赖冲突解决方案
-   - 环境迁移与跨平台兼容
-8. **Miniconda 与 CI/CD 集成**
-9. **常见问题与调试**
-10. **总结**
 
 ## 1. Miniconda 简介
 
