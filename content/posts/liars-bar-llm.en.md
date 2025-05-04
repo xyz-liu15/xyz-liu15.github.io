@@ -217,6 +217,7 @@ git clone https://github.com/LYiHub/liars-bar-llm.git
 cd liars-bar-llm
 pip install -r requirements.txt
 python game.py
+```
 
 > **"In this virtual casino, lying isn't a flaw but a skill—and AI has mastered this art."**
 
