@@ -11,10 +11,14 @@
             "id": "e4d58942557d237d",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "关系图谱"
+              "type": "markdown",
+              "state": {
+                "file": "ollama详解.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "ollama详解"
             }
           }
         ]
@@ -163,5 +167,7 @@
     }
   },
   "active": "e4d58942557d237d",
-  "lastOpenFiles": []
+  "lastOpenFiles": [
+    "ollama详解.md"
+  ]
 }
