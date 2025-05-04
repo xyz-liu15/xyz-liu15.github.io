@@ -1,337 +1,266 @@
-(function() {
-  // 检查是否已加载
-  if (window.aiSummaryLoaded) return;
-  window.aiSummaryLoaded = true;
-  
-  /**
-   * AI摘要功能
-   */
-  const aiConfig = {
-    // AI摘要API地址
-    aiApi: "https://ai-summary.xyz-liu15.workers.dev", // 直接设置API地址
-    // 需要AI摘要的页面内容的选择器
-    aiSelector: '.single .content',
-    // 投诉链接
-    reportUrl: "mailto:xyz.liu15@gmail.com?subject=文章摘要投诉&body=投诉网址：="+location.href,
-    // 正则表达式启用ai摘要的路径
-    enableAIPathRegex: /^\/(posts|zh-cn\/posts|en\/posts)\//,
-    // AI描述
-    aiGPTDesc: '我是一个基于DeepSeek大语言模型的AI摘要工具，它可以帮助你快速生成文章摘要，提高阅读体验。',
-    // 启用翻译功能
-    enableTranslation: true,
-    // 翻译目标语言（auto表示自动检测并翻译到网页当前语言）
-    targetLanguage: 'auto'
+
+  //aiConfig = {};
+  // //ai摘要接口地址 项目 https://github.com/geekswg/qw/ fork https://github.com/FloatSheep/Qwen-Post-Summary
+  // aiConfig.aiApi = "https://qw.geekswg.top"
+  // //需要ai摘要的页面内容的选择器
+  // aiConfig.aiSelector = '#content';
+  // //投诉链接
+  // aiConfig.reportUrl = "mailto:geekswg@qq.cn?subject=文章摘要投诉&body=投诉网址：="+location.href;
+  // //正则表达式启用ai摘要的路径
+  // aiConfig.enableAIPathRegex = /\/posts\//; 
+  // aiConfig.aiGPTDesc = '';
+  aiConfig = {} 
+
+  AISmmary={
+    styleHtml:'#post-ai-result,#summary-wrapper{margin:8px 0;max-width:100%;border:1px solid #2d96bd;padding:8px;border-radius:10px}#summary-wrapper>#title{display:flex;color:#2d96bd;flex-direction:row;align-items:center;justify-content:space-between;padding:0 8px}#summary-wrapper>#title>span.logo{font-size:12px;font-weight:700;border:1px solid transparent;border-radius:16px;cursor:pointer}#summary-wrapper>#title>span.logo.typing{animation:loading 1s infinite;cursor:not-allowed}#summary-wrapper>#title>span.name{display:flex;align-items:center;cursor:pointer}.icon-up{font-weight:400;font-size:12px;margin-left:-3px;opacity:.8;transform:rotate(90deg)}.icon-robot{animation:loading 1s infinite;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:400;width:25px;height:26px;border-radius:50%;margin-right:8px}.icon-up svg{width:1.1rem;height:19px}#summary-wrapper>#meta{display:flex;flex-direction:row;align-items:center;justify-content:space-between;font-size:12px;padding:0 8px;}#summary-wrapper>#meta>span.tip{opacity:.6}#summary-wrapper>#meta>a.report{white-space:nowrap;margin-left:12px;opacity:.8;transition:all .3s}.post-ai-result{min-height:3rem;max-width:41rem;font-size:16px}.ai-cursor{vertical-align: middle;display:inline-block;width:3px;background:#333;height:16px;opacity:.95;margin-left:3px;-webkit-transition:all .3s;-moz-transition:all .3s;-o-transition:all .3s;-ms-transition:all .3s;transition:all .3s;animation:blink 1s infinite}@keyframes blink{0%,50%,to{opacity:1}25%,75%{opacity:0}}@keyframes loading{0%{opacity:1}50%{opacity:.4}to{opacity:1}}'
+    ,initStyle:()=>{
+      style = document.createElement('style');
+      style.innerHTML = AISmmary.styleHtml;
+      document.head.appendChild(style);
+    },
+    divHtml:'<div id="summary-wrapper"><div id="title"><span id="summary-post" class="name"><span class="icon-robot">🤖</span><span class="text">文章摘要 </span><span class="icon-up"></span> </span><span id="ai-logo" class="logo">QwenGPT</span></div><div id="post-ai-result" class="post-ai-result"><span id="post-ai-result-text" class="text"><span id="result-loading">加载中...</span></span></div><div id="meta"><span class="tip">此内容根据文章生成，并经过人工审核，仅用于文章内容的解释与总结</span> <a class="report" href="mailto:admin@hesiy.cn" id="aiReport">投诉</a></div></div>',
+    initDiv:(aiConfig)=>{
+      ele = document.querySelector(aiConfig.aiSelector);
+      ele.insertAdjacentHTML('beforebegin',AISmmary.divHtml);
+      // if(ele){
+      //   ele.insertAdjacentHTML('afterbegin',AISmmary.divHtml);
+      // }else{
+      //   console.log('Element not found.');
+      // }
+    },
+    fetchAIData:(aiConfig)=>{
+      aiSmmaryData(aiConfig);
+    },
+    pjaxInit:(aiConfig)=>{
+      clearTimeout(aiConfig.typingTimeout);
+      AISmmary.init(aiConfig);
+      addScrollListener();
+    },
+    init:(aiConfig)=>{
+      aiConfig.aiApi = aiConfig.aiApi || "https://ai-summary.xyz-liu15.workers.dev/"
+      aiConfig.aiSelector = window.aiConfig.aiSelector || '#content';
+      aiConfig.reportUrl = aiConfig.reportUrl || "mailto:geekswg@qq.cn?subject=文章摘要投诉&body=投诉网址：="+location.href;
+      aiConfig.enableAIPathRegex = aiConfig.enableAIPathRegex||/\/posts\//; //正则表达式
+      aiConfig.aiGPTDesc = aiConfig.aiGPTDesc || '我是一个使用通义千问AI模型的AI摘要助手，可以帮助您快速生成文章摘要，提高阅读体验。';
+      if (!aiConfig.enableAIPathRegex.test(location.pathname)) {
+        return;
+      }else if(!document.querySelector(aiConfig.aiSelector)){
+        //console.info("选择器错误，请检查aiConfig.aiSelector配置=>"+aiConfig.aiSelector);
+        return;
+      }
+      AISmmary.initStyle();
+      AISmmary.initDiv(aiConfig);
+      AISmmary.fetchAIData(aiConfig);
+    }
+  }
+
+  function aiSmmaryData (aiConfig) {
+    aiConfig.enableType ??= true;
+    aiApi = aiConfig.aiApi||"";
+    aiSelector = aiConfig.aiSelector||'#content';
+    reportUrl = aiConfig.reportUrl||"mailto:geekswg@qq.cn?subject=文章摘要投诉&body=投诉网址：="+location.href;
+    backendUrl = aiApi;
+    contentCursor = document.querySelector(aiSelector);
+    outputCursor = document.getElementById("post-ai-result-text");
+    loadingText = document.getElementById("result-loading");
+    aiLogoCursor = document.getElementById("ai-logo");
+    postTitleCursor = document.getElementById("summary-post");
+    document.querySelector("#aiReport").href = reportUrl;
+
+    // 获取 postId 和 content
+    const url = new URL(location.href); //alert(url)
+    const postId = url.pathname.split("/").filter((e) => e !== "").pop();
+
+    let content = contentCursor.textContent;
+    content = content.replace(/\s+/g, ' ');//去除所有空格
+    truncateString =  (str) =>{ //截取字符串
+      const maxLength = 4000;
+      const halfLength = 2000;
+      if (str.length <= maxLength) {
+          return str; // 字符串长度小于等于 1000，直接返回
+      }
+      const start = str.slice(0, halfLength); // 截取前 500 字符
+      const end = str.slice(-halfLength);    // 截取后 500 字符
+      return `${start}...${end}`; // 拼接前后部分和省略号
+    }
+    content = truncateString(content); //截取字符
+
+    // 处理 backendUrl 可能以 / 结尾的情况
+    const apiUrl = backendUrl.endsWith("/")
+      ? `${backendUrl}api/summary`
+      : `${backendUrl}/api/summary`;
+
+    // 构建请求体
+    const requestBody = {
+      postId: postId,
+      content: content,
+    };
+
+    // 光标效果
+    const addCursor = () => {
+      const cursorSpan = document.createElement("span");
+      cursorSpan.className = "ai-cursor";
+      outputCursor.appendChild(cursorSpan);
+    };
+
+    // 插入光标
+    addCursor();
+
+    // 打字效果
+    let typingTimeout;
+    let shouldDisable = false;
+
+    const typeWriter = (index, text) => {
+      if (loadingText) {
+        loadingText.remove();
+      }
+      aiLogoCursor.classList.add("typing");
+      if (index < text.length) {
+        // 在光标前面插入文本
+        const cursor = document.querySelector(".ai-cursor");
+        if(cursor)
+          cursor.insertAdjacentText("beforebegin", text.charAt(index));
+        index++;
+
+        typingTimeout = setTimeout(() => typeWriter(index, text), 40); // 调整打字速度
+        aiConfig.typingTimeout = typingTimeout;
+      } else {
+        aiLogoCursor.classList.remove("typing");
+        document.querySelector(".ai-cursor")?.remove(); // 移除光标
+        shouldDisable = false;
+      }
+    };
+
+    // 摘要输入
+    const inputSummary = (data) => {
+      const outputElement = outputCursor;
+      const text = data;
+      let index = 0;
+      shouldDisable = true;
+      if(!aiConfig.enableType){
+        document.querySelector("#post-ai-result-text").innerHTML = data;
+        shouldDisable = false;
+        switchMode = false;
+        return;
+      }
+      clearTimeout(typingTimeout);
+      typeWriter(index, text);
+      // 当用户离开页面时调用stopTimer函数 
+    };
+
+    // 发送 GET 请求，获得摘要状态
+    let summaryData = undefined;
+
+    const fetchSummary = () => {
+      fetch(`${apiUrl}?postId=${postId}`, {
+        method: "GET",
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.isSave) {
+            // 存入摘要
+            summaryData = data.data;
+            // 成功，模拟打字效果
+            inputSummary(data.data);
+          } else {
+            // 如果 isSave 为 false，发送 POST 请求
+            fetch(apiUrl, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(requestBody),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                if (data.code === 1) {
+                  // 存入摘要
+                  summaryData = data.data;
+                  // 成功，模拟打字效果
+                  inputSummary(data.data);
+                } else {
+                  // 客户端错误，输出响应内容
+                  console.error("Error:", data);
+                }
+              })
+              .catch((error) => {
+                outputCursor.textContent = `${error}`;
+                console.error("Fetch error:", error);
+              });
+          }
+        })
+        .catch((error) => {
+          outputCursor.textContent = `${error}`;
+          console.error("Fetch error:", error);
+        });
+    };
+
+    // 发送请求
+    fetchSummary();
+
+    // 监听 Logo 点击事件
+    let switchMode = false;
+
+    aiLogoCursor.addEventListener("click", () => {
+      if (!shouldDisable) {
+        if (!switchMode) {
+          // 介绍模式
+          let index = 0;
+          const text = aiConfig.aiGPTDesc ||"我是浮杨开发的摘要生成助理 QwenGPT，如你所见，这是一个使用 Qwen 14B 作为生成模型的工具。我在这里只负责显示，并仿照 GPT 的形式输出，如果你像我一样讨厌 Cloudflare Worker 的速度，又囊中羞涩，你也可以像我这样做，当然，你也可以使用 Tianli 开发的 TianliGPT 来更简单的实现 AI 摘要。当然，我的样式与代码很大一部分来自于無名大佬，感谢他的帮助！";
+
+          shouldDisable = true;
+          switchMode = true;
+
+          clearTimeout(typingTimeout);
+
+          outputCursor.textContent = ``;
+
+          addCursor();
+          setTimeout(() => {
+            typeWriter(index, text);
+          }, 1000);
+        } else {
+          if (summaryData !== undefined) {
+            shouldDisable = true;
+            switchMode = false;
+
+            clearTimeout(typingTimeout);
+
+            outputCursor.textContent = ``;
+
+            addCursor();
+            inputSummary(summaryData);
+          }
+        }
+      }
+    });
+
+    postTitleCursor.addEventListener("click", () => {
+      location.href = `https://geekswg.js.cool/posts/2024/ai-summary/`;
+    });
   };
 
-  const AISummary = {
-    init(config) {
-      this.config = Object.assign({}, aiConfig, config);
-      if (this.shouldEnableAI()) {
-        this.createSummaryContainer();
-        this.fetchSummary();
-      }
-    },
-  
-    shouldEnableAI() {
-      return this.config.enableAIPathRegex.test(location.pathname);
-    },
-  
-    createSummaryContainer() {
-      const container = document.createElement('div');
-      container.className = 'ai-summary';
-      // 在createSummaryContainer方法中
-      container.innerHTML = `
-        <div class="ai-summary-header">
-          <div class="ai-summary-icon">🤖</div>
-          <div class="ai-summary-title">文章摘要</div>
-          <div class="ai-summary-model">DeepSeek</div> <!-- 这里从QwenGPT改为DeepSeek -->
-        </div>
-        <div class="ai-summary-content" id="ai-summary-content">
-          <div class="ai-summary-loading">正在生成摘要...</div>
-        </div>
-        <div class="ai-summary-footer">
-          <div class="ai-summary-disclaimer">此内容根据文章生成，并经过人工审核，仅用于文章内容的解释与总结</div>
-          <a href="${this.config.reportUrl}" target="_blank" class="ai-summary-report">投诉</a>
-        </div>
-      `;
-  
-      // 添加样式
-      const style = document.createElement('style');
-      style.textContent = `
-        .ai-summary {
-          margin: 30px auto;
-          padding: 20px;
-          border-radius: 12px;
-          background-color: rgba(240, 240, 240, 0.8);
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-          transition: all 0.3s ease;
-          border-left: 4px solid #6b9eef;
-          max-width: 100%;
-          box-sizing: border-box;
+function addScrollListener() {
+    // 节流函数
+    throttle = function (func, wait) {
+      let lastTime = 0;
+      return function(...args) {
+        const now = Date.now();
+        if (now - lastTime >= wait) {
+          func.apply(this, args);
+          lastTime = now;
         }
-        .ai-summary-header {
-          display: flex;
-          align-items: center;
-          margin-bottom: 15px;
-          padding-bottom: 10px;
-          border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        .ai-summary-icon {
-          font-size: 24px;
-          margin-right: 10px;
-          color: #6b9eef;
-        }
-        .ai-summary-title {
-          font-weight: bold;
-          font-size: 18px;
-          margin-right: auto;
-          color: #333;
-        }
-        .ai-summary-model {
-          font-size: 12px;
-          color: #666;
-          background-color: rgba(107, 158, 239, 0.1);
-          padding: 3px 8px;
-          border-radius: 12px;
-        }
-        .ai-summary-content {
-          line-height: 1.8;
-          margin-bottom: 15px;
-          color: #444;
-          font-size: 15px;
-        }
-        .ai-summary-loading {
-          color: #666;
-          font-style: italic;
-        }
-        .ai-summary-footer {
-          display: flex;
-          justify-content: space-between;
-          font-size: 12px;
-          color: #888;
-          padding-top: 10px;
-          border-top: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        .ai-summary-disclaimer {
-          max-width: 80%;
-        }
-        .ai-summary-report {
-          color: #6b9eef;
-          text-decoration: none;
-          font-weight: 500;
-        }
-        .ai-summary-report:hover {
-          text-decoration: underline;
-        }
-        [data-theme='dark'] .ai-summary {
-          background-color: rgba(40, 40, 40, 0.8);
-          border-left: 4px solid #5183d7;
-        }
-        [data-theme='dark'] .ai-summary-title {
-          color: #eee;
-        }
-        [data-theme='dark'] .ai-summary-content {
-          color: #ccc;
-        }
-        [data-theme='dark'] .ai-summary-model {
-          background-color: rgba(81, 131, 215, 0.2);
-          color: #aaa;
-        }
-        [data-theme='dark'] .ai-summary-model,
-        [data-theme='dark'] .ai-summary-footer,
-        [data-theme='dark'] .ai-summary-disclaimer {
-          color: #999;
-        }
-        [data-theme='dark'] .ai-summary-report {
-          color: #5183d7;
-        }
-        
-        /* 移动端适配 */
-        @media (max-width: 768px) {
-          .ai-summary {
-            margin: 20px auto;
-            padding: 15px;
-          }
-          .ai-summary-title {
-            font-size: 16px;
-          }
-          .ai-summary-content {
-            font-size: 14px;
-          }
-        }
-      `;
-      document.head.appendChild(style);
-  
-      // 查找文章内容元素
-      const contentElement = document.querySelector(this.config.aiSelector);
-      if (!contentElement) {
-        console.error('未找到内容元素:', this.config.aiSelector);
-        return;
-      }
-      
-      // 查找文章标题元素
-      const titleElement = document.querySelector('.single-title') || 
-                           document.querySelector('h1.title') || 
-                           document.querySelector('article h1') || 
-                           document.querySelector('.post-title');
-      
-      // 查找目录元素
-      const tocElement = document.querySelector('#toc-auto') || 
-                      document.querySelector('.toc') ||
-                      document.querySelector('.table-of-contents') ||
-                      document.querySelector('[id^="TableOfContents"]');
-      
-      if (titleElement) {
-        // 如果找到标题元素，将摘要插入到标题之后
-        const parent = titleElement.parentNode;
-        const nextElement = this.findNextContentElement(titleElement);
-        
-        if (nextElement) {
-          parent.insertBefore(container, nextElement);
-          console.log('AI摘要已插入到标题和内容之间');
-        } else {
-          // 如果找不到下一个元素，尝试插入到标题后面
-          if (titleElement.nextSibling) {
-            parent.insertBefore(container, titleElement.nextSibling);
-          } else {
-            parent.appendChild(container);
-          }
-          console.log('AI摘要已插入到标题后面');
-        }
-        
-        // 不移动目录元素，保持其原有位置
-        if (tocElement) {
-          console.log('保持目录在原有位置');
-        }
+      };
+    }
+    // 监听目标div的top值
+    const targetDiv = document.querySelector('#summary-wrapper');
+    window.addEventListener('scroll', throttle(() => {
+      const rect = targetDiv.getBoundingClientRect();
+      if (rect.top <= 60) {
+        // top值小于60时的处理
+        targetDiv.classList.add('minimized');
       } else {
-        // 如果找不到标题，回退到原来的方案
-        contentElement.insertBefore(container, contentElement.firstChild);
-        console.log('未找到标题元素，AI摘要已插入到内容区域顶部');
+        targetDiv.classList.remove('minimized');
       }
-    },
-    
-    // 查找标题后的内容元素
-    findNextContentElement(titleElement) {
-      // 尝试查找常见的内容开始标记
-      let current = titleElement.nextElementSibling;
-      
-      while (current) {
-        // 检查是否是内容相关元素
-        if (current.tagName === 'P' || 
-            current.tagName === 'DIV' && (current.classList.contains('content') || current.classList.contains('post-content')) ||
-            current.tagName === 'ARTICLE' ||
-            current.tagName === 'SECTION') {
-          return current;
-        }
-        
-        // 检查是否是元数据元素，通常在标题和内容之间
-        if (current.classList.contains('post-meta') || 
-            current.classList.contains('post-info') ||
-            current.classList.contains('post-header')) {
-          // 跳过元数据，继续查找下一个元素
-          current = current.nextElementSibling;
-          continue;
-        }
-        
-        // 如果找到了目录，也应该在目录之前插入
-        if (current.id === 'toc-auto' || 
-            current.classList.contains('toc') ||
-            current.classList.contains('table-of-contents')) {
-          return current;
-        }
-        
-        current = current.nextElementSibling;
-      }
-      
-      return null;
-    },
-  
-    fetchSummary() {
-      const contentElement = document.querySelector(this.config.aiSelector);
-      if (!contentElement) {
-        console.error('未找到内容元素:', this.config.aiSelector);
-        return;
-      }
-      
-      // 检查API地址是否已设置
-      if (!this.config.aiApi) {
-        console.error('API地址未设置，无法获取摘要');
-        const summaryContent = document.getElementById('ai-summary-content');
-        if (summaryContent) {
-          summaryContent.innerHTML = 'API地址未设置，请检查配置。';
-        }
-        return;
-      }
-      
-      console.log('使用API地址:', this.config.aiApi);
-      const title = document.title;
-      let content = contentElement.textContent.trim();
-      
-      // 限制内容长度，减少API请求大小
-      content = content.replace(/\s+/g, ' ').substring(0, 800);
-      
-      const summaryContent = document.getElementById('ai-summary-content');
-      
-      // 获取当前页面语言
-      const pageLang = document.documentElement.lang || 'zh-cn';
-      const isEnglishPage = pageLang === 'en';
-      
-      // 始终使用英文提示词生成英文摘要，无论页面语言
-      const prompt = `Please generate a brief summary under 100 words:`;
-      
-      // 添加随机参数和时间戳
-      const randomSeed = Math.floor(Math.random() * 1000000);
-      const timestamp = new Date().getTime();
-      
-      // 创建API URL，减少参数长度，强制使用英文生成摘要
-      const apiUrl = `${this.config.aiApi}?q=${encodeURIComponent(title)}&content=${encodeURIComponent(content.substring(0, 400))}&lang=en&seed=${randomSeed}&t=${timestamp}`;
-      
-      // 显示加载状态 - 使用更简洁的加载动画
-      const loadingText = isEnglishPage ? 'Generating summary' : '正在生成摘要';
-      summaryContent.innerHTML = `<div class="ai-summary-loading">${loadingText}<span class="loading-dots"></span></div>`;
-      
-      // 添加加载动画
-      const loadingStyle = document.createElement('style');
-      loadingStyle.textContent = `
-        .loading-dots:after {
-          content: '.';
-          animation: loading-dots 1s infinite;
-        }
-      } else {
-        console.error('摘要生成失败:', data);
-        summaryContent.innerHTML = `<div class="ai-summary-error">摘要生成失败</div>`;
-      }
-    })
-    .catch(error => {
-      console.error('摘要请求错误:', error);
-      summaryContent.innerHTML = `<div class="ai-summary-error">摘要请求错误</div>`;
-    });
-},
-
-// 翻译摘要
-translateSummary(text, summaryContent) {
-  const translateUrl = `${this.config.aiApi}?translate=true&text=${encodeURIComponent(text)}&target=zh-CN`;
-
-  // 显示翻译中状态
-  summaryContent.innerHTML = `<div class="ai-summary-loading">正在翻译...</div>`;
-
-  fetch(translateUrl)
-    .then(response => response.json())
-    .then(data => {
-      if (data && data.translation) {
-        summaryContent.innerHTML = `<div class="ai-summary-content">${data.translation}</div>`;
-      } else {
-        console.error('翻译失败:', data);
-        summaryContent.innerHTML = `<div class="ai-summary-error">翻译失败</div>`;
-      }
-    })
-    .catch(error => {
-      console.error('翻译请求错误:', error);
-      summaryContent.innerHTML = `<div class="ai-summary-error">翻译请求错误</div>`;
-    });
-};
-  
-  // 导出配置和方法（确保这里使用正确的变量名）
-  window.aiConfig = aiConfig;
-  window.AISummary = AISummary; // 正确的变量名
-})();
+    }, 100));
+}
