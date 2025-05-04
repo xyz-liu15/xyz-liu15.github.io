@@ -12,7 +12,7 @@ author:
 description: A comprehensive guide to Miniconda, including installation, configuration, environment management, and mirror settings
 keywords: Miniconda, Conda, Python environment management, virtual environments
 license:
-comment: false
+comment: true
 weight: 0
 tags:
   - Python
@@ -42,25 +42,6 @@ repost:
 <!--more-->
 
 # Miniconda Detailed Guide
-
-## Table of Contents
-
-1. **Introduction to Miniconda**
-2. **Installation and Configuration**
-   - Windows
-   - macOS
-   - Linux
-3. **Miniconda vs Anaconda**
-4. **Conda Mirror Configuration**
-5. **Python Virtual Environment Management**
-6. **Package Management and Dependency Control**
-7. **Advanced Techniques**
-   - Environment Export and Sharing
-   - Dependency Conflict Resolution
-   - Environment Migration and Cross-platform Compatibility
-8. **Miniconda and CI/CD Integration**
-9. **Common Issues and Debugging**
-10. **Conclusion**
 
 ## 1. Introduction to Miniconda
 

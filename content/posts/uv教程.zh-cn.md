@@ -1,5 +1,5 @@
 ---
-title: Python的uv库使用详解
+title: uv使用详解
 subtitle: "更快、更高效的Python包管理工具"
 date: 2025-05-03T09:07:40+08:00
 slug: 4b5bcb5
@@ -37,7 +37,7 @@ lightgallery: false
 
 <!--more-->
 
-# Python的uv库使用详解
+# 包管理工具uv使用详解
 
 uv是一个新兴的Python包管理工具，由Astral公司开发（也是Ruff和Starlette等知名工具的开发者）。它旨在替代pip和virtualenv，提供更快的依赖解析和安装速度。下面我将详细介绍uv的使用方法。
 
