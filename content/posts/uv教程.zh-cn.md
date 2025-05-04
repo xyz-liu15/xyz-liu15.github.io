@@ -1,5 +1,5 @@
 ---
-title: "Python的uv库使用详解"
+title: Python的uv库使用详解
 subtitle: "更快、更高效的Python包管理工具"
 date: 2025-05-03T09:07:40+08:00
 slug: 4b5bcb5

@@ -35,7 +35,7 @@ lightgallery: false
 password:
 message:
 repost:
-  enable: true
+  enable: false
   url:
 ---
 

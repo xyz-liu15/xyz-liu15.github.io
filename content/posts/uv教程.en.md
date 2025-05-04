@@ -1,5 +1,5 @@
 ---
-title: "Comprehensive Guide to Python's uv Library"
+title: Comprehensive Guide to Python's uv Library
 subtitle: "A Faster, More Efficient Python Package Manager"
 date: 2025-05-03T09:07:40+08:00
 slug: 4b5bcb5
