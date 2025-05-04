@@ -445,7 +445,7 @@ disableThemeInject = false
 # Site SEO config
 [seo]
   # image URL
-  image = ""
+  image = "https://i.pinimg.com/736x/cd/ae/3b/cdae3b65b08001cc46fe0c932e786ea1.jpg"
   # thumbnail URL
   thumbnailUrl = ""
 
