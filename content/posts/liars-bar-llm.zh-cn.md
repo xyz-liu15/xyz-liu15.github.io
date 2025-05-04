@@ -216,7 +216,7 @@ git clone https://github.com/LYiHub/liars-bar-llm.git
 cd liars-bar-llm
 pip install -r requirements.txt
 python game.py
-
+```
 
 > **"在这个虚拟赌场里，撒谎不是缺陷，而是一种能力——而AI已经掌握了这门艺术。"**
 
@@ -225,4 +225,3 @@ python game.py
 - 第一天："AI撒谎太明显了！"
 - 第一周："等等...它刚才是不是在骗我？"
 - 第一个月："我分不清AI和人类玩家了..."
-```
