@@ -1,5 +1,5 @@
 ---
-title: ‘"liars-bar-llm": When AI Learns to Bluff - A Game of Language Models‘
+title: ‘"liars-bar-llm":When AI Learns to Bluff - A Game of Language Models‘
 subtitle: "Exploring the Astonishing Performance of LLMs in Psychological Games"
 date: 2025-05-04T10:00:00+08:00
 # 确保所有键值对格式正确
