@@ -297,154 +297,39 @@
           content: '.';
           animation: loading-dots 1s infinite;
         }
-        
-        @keyframes loading-dots {
-          0% { content: '.'; }
-          33% { content: '..'; }
-          66% { content: '...'; }
-        }
-      `;
-      document.head.appendChild(loadingStyle);
-      
-      // 使用EventSource进行流式接收
-      const eventSource = new EventSource(apiUrl);
-      let summary = '';
-      
-      // 准备打字机效果 - 使用更高效的DOM操作
-      summaryContent.innerHTML = '';
-      const typingElement = document.createElement('div');
-      typingElement.className = 'typing-text';
-      summaryContent.appendChild(typingElement);
-      
-      // 添加打字机效果的CSS - 优化动画性能
-      const typingStyle = document.createElement('style');
-      typingStyle.textContent = `
-        .typing-text {
-          border-right: 2px solid #6b9eef;
-          animation: blink-caret 0.75s step-end infinite;
-          white-space: pre-wrap;
-          word-break: break-word;
-          will-change: contents; /* 提示浏览器优化渲染 */
-        }
-        
-        @keyframes blink-caret {
-          from, to { border-color: transparent }
-          50% { border-color: #6b9eef }
-        }
-      `;
-      document.head.appendChild(typingStyle);
-      
-      // 使用requestAnimationFrame优化渲染
-      let pendingText = '';
-      let animationFrameId = null;
-      
-      function updateText() {
-        if (pendingText) {
-          typingElement.textContent += pendingText;
-          pendingText = '';
-          // 自动滚动到底部
-          summaryContent.scrollTop = summaryContent.scrollHeight;
-        }
-        animationFrameId = null;
+      } else {
+        console.error('摘要生成失败:', data);
+        summaryContent.innerHTML = `<div class="ai-summary-error">摘要生成失败</div>`;
       }
-      
-      // 处理流式响应 - 优化更新逻辑
-      eventSource.onmessage = (event) => {
-        if (event.data === "[DONE]") {
-          eventSource.close();
-          typingElement.classList.remove('typing-text');
-          
-          // 如果有待处理的文本，立即更新
-          if (pendingText) {
-            typingElement.textContent += pendingText;
-            pendingText = '';
-          }
-          
-          // 如果是中文页面，自动翻译英文摘要为中文
-          if (!isEnglishPage && summary) {
-            this.translateSummary(summary, summaryContent);
-          }
-          
-          return;
-        } else {
-          try {
-            const data = JSON.parse(event.data);
-            if (data.response) {
-              // 收集文本，但不立即更新DOM
-              const newText = data.response;
-              summary += newText;
-              pendingText += newText;
-              
-              // 使用requestAnimationFrame批量更新DOM
-              if (!animationFrameId) {
-                animationFrameId = requestAnimationFrame(updateText);
-              }
-            }
-          } catch (e) {
-            console.error('Error parsing event data:', e);
-          }
-        }
-      };
-      
-      eventSource.onerror = (error) => {
-        console.error('EventSource错误:', error);
-        eventSource.close();
-        if (!summary) {
-          // 如果API请求失败，生成一个简单的本地摘要
-          const firstParagraph = content.split('\n\n')[0] || '';
-          let localSummary = firstParagraph.substring(0, 150);
-          if (localSummary.length >= 100) {
-            localSummary += '...';
-          }
-          summaryContent.innerHTML = `<p>${localSummary}</p><p class="ai-summary-note">${isEnglishPage ? '(Local summary)' : '(本地生成的摘要)'}</p>`;
-        } else {
-          // 如果已经有部分摘要，保留它
-          typingElement.classList.remove('typing-text');
-        }
-      };
-    },
-  
-    // 翻译方法 - 优化翻译体验
-    translateSummary(text, summaryContent) {
-      console.log('开始翻译摘要');
-      
-      // 显示翻译中状态
-      const originalText = text;
-      summaryContent.innerHTML = `<div class="ai-summary-original">${originalText}</div><div class="ai-summary-translation"><div class="ai-summary-loading">正在翻译...<span class="loading-dots"></span></div></div>`;
-      
-      // 构建翻译请求
-      const translateUrl = `${this.config.aiApi}?translate=true&text=${encodeURIComponent(text)}&target=zh-CN`;
-      
-      fetch(translateUrl)
-        .then(response => response.json())
-        .then(data => {
-          if (data && data.translation) {
-            // 只显示翻译后的中文摘要，不显示原始英文摘要
-            summaryContent.innerHTML = `<div class="ai-summary-translation">${data.translation}</div>`;
-            
-            // 添加翻译样式
-            const style = document.createElement('style');
-            style.textContent = `
-              .ai-summary-translation {
-                font-weight: 500;
-                color: #333;
-              }
-              [data-theme='dark'] .ai-summary-translation {
-                color: #eee;
-              }
-            `;
-            document.head.appendChild(style);
-          } else {
-            console.error('翻译失败:', data);
-            summaryContent.innerHTML = originalText;
-          }
-        })
-        .catch(error => {
-          console.error('翻译请求错误:', error);
-          summaryContent.innerHTML = originalText;
-        });
-    }
-  };
+    })
+    .catch(error => {
+      console.error('摘要请求错误:', error);
+      summaryContent.innerHTML = `<div class="ai-summary-error">摘要请求错误</div>`;
+    });
+},
+
+// 翻译摘要
+translateSummary(text, summaryContent) {
+  const translateUrl = `${this.config.aiApi}?translate=true&text=${encodeURIComponent(text)}&target=zh-CN`;
+
+  // 显示翻译中状态
+  summaryContent.innerHTML = `<div class="ai-summary-loading">正在翻译...</div>`;
+
+  fetch(translateUrl)
+    .then(response => response.json())
+    .then(data => {
+      if (data && data.translation) {
+        summaryContent.innerHTML = `<div class="ai-summary-content">${data.translation}</div>`;
+      } else {
+        console.error('翻译失败:', data);
+        summaryContent.innerHTML = `<div class="ai-summary-error">翻译失败</div>`;
+      }
+    })
+    .catch(error => {
+      console.error('翻译请求错误:', error);
+      summaryContent.innerHTML = `<div class="ai-summary-error">翻译请求错误</div>`;
+    });
+};
   
   // 导出配置和方法（确保这里使用正确的变量名）
   window.aiConfig = aiConfig;
