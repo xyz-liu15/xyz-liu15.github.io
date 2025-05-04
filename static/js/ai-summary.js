@@ -8,7 +8,7 @@
    */
   const aiConfig = {
     // AI摘要API地址
-    aiApi: "", // 这里填写您的API地址，例如：https://your-worker-name.username.workers.dev
+    aiApi: "https://ai-summary.xyz-liu15.workers.dev", // 直接设置API地址
     // 需要AI摘要的页面内容的选择器
     aiSelector: '.single .content',
     // 投诉链接
@@ -248,8 +248,22 @@
   
     fetchSummary() {
       const contentElement = document.querySelector(this.config.aiSelector);
-      if (!contentElement) return;
-  
+      if (!contentElement) {
+        console.error('未找到内容元素:', this.config.aiSelector);
+        return;
+      }
+      
+      // 检查API地址是否已设置
+      if (!this.config.aiApi) {
+        console.error('API地址未设置，无法获取摘要');
+        const summaryContent = document.getElementById('ai-summary-content');
+        if (summaryContent) {
+          summaryContent.innerHTML = 'API地址未设置，请检查配置。';
+        }
+        return;
+      }
+      
+      console.log('使用API地址:', this.config.aiApi);
       const title = document.title;
       let content = contentElement.textContent.trim();
       

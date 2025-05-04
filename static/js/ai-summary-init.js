@@ -6,14 +6,18 @@
   
   // 检查是否在文章页面
   function isPostPage() {
-    return /^\/posts\//.test(location.pathname);
+    return /\/posts\//.test(location.pathname); // 简化路径匹配规则
   }
   
   // 初始化AI摘要
   function initAISummary() {
     if (typeof AISummary !== 'undefined') {
       console.log('正在初始化AI摘要...');
-      AISummary.init();
+      // 确保API地址已设置
+      if (!AISummary.config || !AISummary.config.aiApi) {
+        window.aiConfig.aiApi = "https://ai-summary.xyz-liu15.workers.dev";
+      }
+      AISummary.init(window.aiConfig);
       console.log('AI摘要初始化完成');
     } else {
       console.error('AISummary未定义，请检查ai-summary.js是否正确加载');
