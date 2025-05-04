@@ -1,5 +1,5 @@
 ---
-title: Comprehensive Guide to Python's uv Library
+title: Comprehensive Guide to uv
 subtitle: "A Faster, More Efficient Python Package Manager"
 date: 2025-05-03T09:07:40+08:00
 slug: 4b5bcb5
@@ -37,7 +37,7 @@ lightgallery: false
 
 <!--more-->
 
-# Comprehensive Guide to Python's uv Library
+# Comprehensive Guide to uv
 
 uv is an emerging Python package manager developed by Astral (the same company behind popular tools like Ruff and Starlette). It aims to replace pip and virtualenv, offering faster dependency resolution and installation speeds. Below, I'll provide a detailed guide on how to use uv.
 
