@@ -260,9 +260,9 @@ disableThemeInject = false
 
 # FixIt 0.2.16 | CHANGED Social config about the author
 [social]
-  GitHub = "https://github.com/xyz-liu15"
+  GitHub = "xyz-liu15"
   Linkedin = ""
-  Twitter = "https://x.com/liu_xyz15"
+  Twitter = "liu_xyz15"
   Instagram = ""
   Facebook = ""
   Telegram = ""
