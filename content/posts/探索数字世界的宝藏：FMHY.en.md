@@ -14,7 +14,7 @@ license:
 comment: true
 weight: 0
 tags:
-  - recourse
+  - resourse
 categories:
   - tool
 hiddenFromHomePage: false
