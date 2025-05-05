@@ -2,7 +2,7 @@
 title: ollama的使用教程
 subtitle: 从安装到高级使用的完整指南
 date: 2025-05-05T08:14:21+08:00
-slug: 8f1d8ed
+slug: 213wbsz
 draft: false
 author: 
   name: 刘十五
