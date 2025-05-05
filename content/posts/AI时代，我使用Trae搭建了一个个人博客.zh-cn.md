@@ -1,6 +1,6 @@
 ---
 title: AI时代，我是用Trae搭建了一个个人博客
-subtitle: "更快、更高效的Python包管理工具"
+subtitle: "利用Trae的智能体功能，使用Hugo框架以及Fixlt主题部署在GitHub Pa"
 date: 2025-05-03T09:07:40+08:00
 slug: 76menc3
 draft: false
