@@ -4,18 +4,17 @@ subtitle: 从安装到高级使用的完整指南
 date: 2025-05-05T08:14:21+08:00
 slug: 213wbsz
 draft: false
-author: 
+author:
   name: 刘十五
   link: https://github.com/xyz-liu15
   email: xyz.liu15@gmail.com
   avatar: https://i.pinimg.com/736x/cd/ae/3b/cdae3b65b08001cc46fe0c932e786ea1.jpg
-description: Miniconda的完整使用指南，包含安装配置、环境管理、镜像源设置等详细教程
-keywords: Miniconda, Conda, Python环境管理, 虚拟环境
-license:
+description: ollama的完整使用指南
+keywords: 大模型本地部署
+license: 
 comment: true
 weight: 0
 tags:
-  - Python
   - 开发工具
 categories:
   - 编程技术
@@ -23,7 +22,7 @@ hiddenFromHomePage: false
 hiddenFromSearch: false
 hiddenFromRelated: false
 hiddenFromFeed: false
-summary: Miniconda的完整使用指南，包含从安装到高级使用的详细教程
+summary: ollama的完整使用指南
 resources:
   - name: featured-image
     src: featured-image.jpg
@@ -32,8 +31,8 @@ resources:
 toc: true
 math: false
 lightgallery: false
-password:
-message:
+password: 
+message: 
 repost:
   enable: false
   url:
