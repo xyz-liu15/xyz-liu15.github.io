@@ -9,8 +9,8 @@ author:
   link: "https://github.com/xyz-liu15"
   email: "xyz.liu15@gmail.com"
   avatar: "https://i.pinimg.com/736x/cd/ae/3b/cdae3b65b08001cc46fe0c932e786ea1.jpg"
-description: "使用代码编辑器Trae进行个人博客搭建，用到了Hugo框架，Fixlt主题，以及"
-keywords: ["Python", "uv", "包管理", "依赖管理", "虚拟环境"]
+description: "使用代码编辑器Trae进行个人博客搭建，用到了Hugo框架，Fixlt主题，以及Github Pages"
+keywords: ["个人博客搭建","心得"]
 license: "CC BY-NC-SA 4.0"
 comment: true
 weight: 0
