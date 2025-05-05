@@ -15,16 +15,14 @@ license: "CC BY-NC-SA 4.0"
 comment: true
 weight: 0
 tags:
-  - Python
-  - 工具
-  - 教程
+  - 心得体会
 categories:
   - 编程技术
 hiddenFromHomePage: false
 hiddenFromSearch: false
 hiddenFromRelated: false
 hiddenFromFeed: false
-summary: "uv是一个新兴的Python包管理工具，提供更快的依赖解析和安装速度，本文详细介绍了uv的安装、配置和使用方法。"
+summary: "本文介绍了如何使用Trae进行个人博客搭建，遇到的问题"
 resources:
   - name: featured-image
     src: featured-image.jpg
