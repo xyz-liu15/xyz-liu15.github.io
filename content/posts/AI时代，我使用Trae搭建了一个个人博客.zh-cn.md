@@ -1,5 +1,5 @@
 ---
-title: AI时代，我是用Trae搭建了一个个人博客
+title: AI时代，我使用Trae搭建了一个个人博客
 subtitle: "利用Trae的智能体功能，使用Hugo框架以及Fixlt主题部署在GitHub Pages上"
 date: 2025-05-05T13:30:40+08:00
 slug: 76menc3
