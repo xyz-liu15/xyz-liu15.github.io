@@ -9,7 +9,7 @@ author:
   link: "https://github.com/xyz-liu15"
   email: "xyz.liu15@gmail.com"
   avatar: "https://i.pinimg.com/736x/cd/ae/3b/cdae3b65b08001cc46fe0c932e786ea1.jpg"
-description: "uv是一个新兴的Python包管理工具，由Astral公司开发，旨在替代pip和virtualenv，提供更快的依赖解析和安装速度。"
+description: "使用代码编辑器Trae进行个人博客搭建，用到了Hugo框架，Fixlt主题，以及"
 keywords: ["Python", "uv", "包管理", "依赖管理", "虚拟环境"]
 license: "CC BY-NC-SA 4.0"
 comment: true
