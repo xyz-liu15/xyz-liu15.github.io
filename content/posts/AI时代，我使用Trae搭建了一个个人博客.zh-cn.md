@@ -1,5 +1,5 @@
 ---
-title: uv使用详解
+title: AI时代，我是用Trae搭建了一个个人博客
 subtitle: "更快、更高效的Python包管理工具"
 date: 2025-05-03T09:07:40+08:00
 slug: 76menc3
