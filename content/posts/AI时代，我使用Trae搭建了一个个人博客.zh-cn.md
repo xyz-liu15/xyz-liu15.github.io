@@ -33,5 +33,4 @@ math: false
 lightgallery: false
 ---
 你是否曾经幻想过拥有一个属于自己的个人网站？
-成本汇总：
-域名：
+ZHIYOU
