@@ -1,42 +1,41 @@
 ---
-title: Exploring the Treasures of the Digital World: FMHY
-subtitle: FMHY introduce
+title: "Exploring the Treasures of the Digital World: FMHY"
+subtitle: "FMHY introduce"
 date: 2025-05-03T08:14:21+08:00
-slug: 8fgh132
+slug: "8fgh132"
 draft: false
 author: 
   name: "Liu Fifteen"
   link: "https://github.com/xyz-liu15"
   email: "xyz.liu15@gmail.com"
   avatar: "https://i.pinimg.com/736x/cd/ae/3b/cdae3b65b08001cc46fe0c932e786ea1.jpg"
-description: 
-license:
+description: ""
+license: ""
 comment: true
 weight: 0
 tags:
-  - resourse
+  - "resource"  # 修正了拼写错误(resourse → resource)
 categories:
-  - tool
+  - "tool"
 hiddenFromHomePage: false
 hiddenFromSearch: false
 hiddenFromRelated: false
 hiddenFromFeed: false
-summary: 
+summary: ""
 resources:
-  - name: featured-image
-    src: featured-image.jpg
-  - name: featured-image-preview
-    src: featured-image-preview.jpg
+  - name: "featured-image"
+    src: "featured-image.jpg"
+  - name: "featured-image-preview"
+    src: "featured-image-preview.jpg"
 toc: true
 math: false
 lightgallery: false
-password:
-message:
+password: ""
+message: ""
 repost:
   enable: false
-  url:
+  url: ""
 ---
-
 # Exploring the Treasures of the Digital World: A Detailed Look at FMHY (Free Media Heck Yeah)
 
 In this era of information explosion, finding high-quality, free, and safe digital resources is like navigating through a vast sea of stars. FMHY (Free Media Heck Yeah) serves as a guiding lighthouse for digital explorers—it is not only the largest collection of free resources on the internet but also an open knowledge base collaboratively built by users worldwide. This article will delve into FMHY's core values, resource categorization, community features, and security measures, revealing the unique charm of this digital treasure trove.
