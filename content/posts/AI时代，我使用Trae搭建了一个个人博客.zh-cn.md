@@ -22,7 +22,7 @@ hiddenFromHomePage: false
 hiddenFromSearch: false
 hiddenFromRelated: false
 hiddenFromFeed: false
-summary: "本文介绍了如何使用Trae进行个人博客搭建，遇到的问题"
+summary: "本文介绍了如何使用Trae进行个人博客搭建，其中遇到的问题以及解决方法。"
 resources:
   - name: featured-image
     src: featured-image.jpg
