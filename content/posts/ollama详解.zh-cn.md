@@ -1,4 +1,43 @@
-
+---
+title: ollama的使用教程
+subtitle: 从安装到高级使用的完整指南
+date: 2025-05-05T08:14:21+08:00
+slug: 8f1d8ed
+draft: false
+author: 
+  name: 刘十五
+  link: https://github.com/xyz-liu15
+  email: xyz.liu15@gmail.com
+  avatar: https://i.pinimg.com/736x/cd/ae/3b/cdae3b65b08001cc46fe0c932e786ea1.jpg
+description: Miniconda的完整使用指南，包含安装配置、环境管理、镜像源设置等详细教程
+keywords: Miniconda, Conda, Python环境管理, 虚拟环境
+license:
+comment: true
+weight: 0
+tags:
+  - Python
+  - 开发工具
+categories:
+  - 编程技术
+hiddenFromHomePage: false
+hiddenFromSearch: false
+hiddenFromRelated: false
+hiddenFromFeed: false
+summary: Miniconda的完整使用指南，包含从安装到高级使用的详细教程
+resources:
+  - name: featured-image
+    src: featured-image.jpg
+  - name: featured-image-preview
+    src: featured-image-preview.jpg
+toc: true
+math: false
+lightgallery: false
+password:
+message:
+repost:
+  enable: false
+  url:
+---
 Ollama 是一个开源的本地大语言模型运行框架，旨在让用户在本地设备上轻松部署和运行大型语言模型（LLM），如 LLaMA、Mistral 等。以下是对 Ollama 的详细解析，涵盖其功能、特点、使用方法以及相关细节。
 
 ---

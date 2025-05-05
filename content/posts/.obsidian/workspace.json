@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "uv教程.en.md",
+                "file": "ollama详解.zh-cn.md",
                 "mode": "source",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "uv教程.en"
+              "title": "ollama详解.zh-cn"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "uv教程.en.md",
+                "file": "ollama详解.zh-cn.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "uv教程.en 的反向链接列表"
+              "title": "ollama详解.zh-cn 的反向链接列表"
             }
           },
           {
@@ -169,6 +169,7 @@
   },
   "active": "e4d58942557d237d",
   "lastOpenFiles": [
+    "Miniconda使用教程.zh-cn.md",
     "ollama详解.zh-cn.md",
     "uv教程.en.md"
   ]
