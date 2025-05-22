@@ -40,190 +40,137 @@ repost:
 ---
 
 <!--more-->
+# Miniconda Tutorial
 
-# Miniconda Detailed Guide
+## 1. Installation
 
-## 1. Introduction to Miniconda
+Visit the official website [here](https://www.anaconda.com/download/success) to download the latest version of Miniconda. After downloading, follow these steps to install:
 
-Miniconda is a lightweight version of Anaconda, containing only the `conda` package management tool, Python, and a few core dependencies. It's suitable for users who are sensitive to disk space or need customized environments, making it the preferred tool for managing Python virtual environments and scientific computing dependencies.
+![Installation Step 1](/resources/_gen/images/Miniconda_1.png)
 
-## 2. Installation and Configuration
+![Installation Step 2](/resources/_gen/images/Miniconda_2.png)
 
-### Windows
+![Installation Step 3](/resources/_gen/images/Miniconda_3.png)
 
-1. **Download the Installer**  
-   `https://docs.conda.io/en/latest/miniconda.html` Select the Windows 64-bit version.
+![Installation Step 4](/resources/_gen/images/Miniconda_4.png)
 
-2. **Run the Installer**
-   - Check `Add Miniconda to PATH` (requires administrator privileges).
-   - Restart the terminal after installation.
+![Installation Step 5](/resources/_gen/images/Miniconda_5.png)
 
-3. **Verify Installation**
-   ```bash
-   conda --version
-   ```
+> Note: If you see the following popup, simply close it.
 
-### macOS
+![Prompt Window](/resources/_gen/images/proceed.png)
 
-1. **Download the Installer**  
-   Choose macOS 64-bit (bash) or Apple Silicon (M1/M2) version.
+![Installation Step 6](/resources/_gen/images/Miniconda_6.png)
 
-2. **Terminal Installation**
-   ```bash
-   bash Miniconda3-latest-MacOSX-x86_64.sh
-   ```
+---
 
-3. **Configure PATH**  
-   Edit `~/.zshrc` or `~/.bash_profile`, add:
-   ```bash
-   export PATH="/opt/miniconda3/bin:$PATH"
-   ```
+## 2. Configuring Miniconda
 
-### Linux
+First, open Anaconda PowerShell Prompt or Anaconda Prompt. Run the following commands to configure the Tsinghua mirror source:
 
-1. **Download the Installation Script**
-   ```bash
-   wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-   ```
-
-2. **Execute Installation**
-   ```bash
-   bash Miniconda3-latest-Linux-x86_64.sh
-   ```
-
-3. **Activate Environment**
-   ```bash
-   source ~/.bashrc
-   ```
-
-## 3. Miniconda vs Anaconda
-
-|**Feature**|**Miniconda**|**Anaconda**|
-|-|-|-|
-|**Installation Size**|~100 MB|~3 GB|
-|**Pre-installed Packages**|Core tools only|1500+ scientific computing packages|
-|**Use Cases**|Custom environments, lightweight deployment|Ready-to-use, rapid prototype development|
-|**Flexibility**|High (install as needed)|Low (pre-installed packages)|
-
-## 4. Conda Mirror Configuration
-
-### Regional Mirrors (Faster Downloads)
-
-- **Tsinghua Mirror**
-  ```bash
-  conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
-  conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free
-  conda config --set show_channel_urls yes
-  ```
-
-- **Alibaba Cloud Mirror**
-  ```bash
-  conda config --add channels https://mirrors.aliyun.com/anaconda/pkgs/main/
-  ```
-
-### Restore Default Source
-```bash
-conda config --remove-key channels
+```shell
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
+conda config --set show_channel_urls yes
 ```
 
-## 5. Python Virtual Environment Management
+### 2.1 Configuration Command Explanation
 
-### Creating and Activating Environments
-```bash
-# Create environment (specify Python version)
-conda create --name myenv python=3.9
+#### Adding Mirror Source
 
-# Activate environment
-conda activate myenv  # Windows/macOS/Linux (Shell must support)
-
-# Exit environment
-conda deactivate
+```shell
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
 ```
 
-### Managing Environment List
-```bash
-# View all environments
-conda env list
+- `conda config`: conda's configuration management command
+- `--add channels`: add a new software source (channel)
+- `https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/`: Tsinghua University's conda-forge mirror source address
 
-# Delete environment
-conda env remove --name myenv
+**Purpose**: This adds Tsinghua University's conda-forge mirror source to your conda configuration. When you install or update packages, conda will download from this domestic mirror source, which is much faster than downloading from international sources.
+
+#### Display Package Sources
+
+```shell
+conda config --set show_channel_urls yes
 ```
 
-## 6. Package Management and Dependency Control
+- `--set`: set a configuration option
+- `show_channel_urls`: controls whether to display the URL of package sources
+- `yes`: enable this option
 
-### Installing and Uninstalling Packages
-```bash
-# Install via conda
-conda install numpy pandas
+**Purpose**: When this option is set to yes:
 
-# Install via pip (prefer conda)
-pip install requests
+1. When executing `conda install` or similar commands, it will show which specific source URL each package is downloaded from
+2. When creating new environments or installing packages, the output information will be more detailed, making it easier to confirm package sources
+3. Helps debug software source configuration issues
 
-# Uninstall package
-conda uninstall numpy
+### 2.2 Verify Configuration
+
+```shell
+conda config --show channels
+conda config --show custom_channels
 ```
 
-### Version Control
-```bash
-# Install specific version
-conda install numpy=1.21.0
+#### View Software Source List
 
-# Update package
-conda update numpy
+```shell
+conda config --show channels
 ```
 
-## 7. Advanced Techniques
+- `conda config`: conda's configuration management command
+- `--show`: display configuration information
+- `channels`: specify the configuration item name to view
 
-### Environment Export and Sharing
-```bash
-# Export environment configuration
-conda env export > environment.yml
+**Purpose**: Displays the value of `channels` in the current conda configuration, which is the list of software sources and their priority order that conda uses when searching for and installing packages.
 
-# Create environment from file
-conda env create -f environment.yml
+#### View Custom Software Sources
+
+```shell
+conda config --show custom_channels
 ```
 
-### Dependency Conflict Resolution
-```bash
-# View conflicting packages
-conda list --show-channel-urls
+- `custom_channels`: view custom named software source configurations
 
-# Install in strict mode
-conda install --strict-channel-priority
+**Purpose**: Displays all custom named channels and their corresponding URL mappings.
+
+![Configuration Result](/resources/_gen/images/channels.png)
+
+---
+
+## 3. Creating and Managing Virtual Environments
+
+### 3.1 Create a Virtual Environment
+
+```shell
+conda create --name python_dev python=3.12.7
 ```
 
-### Cross-platform Environment Migration
-```bash
-# Generate platform-independent environment file
-conda env export --from-history > environment.yml
+**Command Structure Analysis**:
+
+- `conda create`: basic command for creating a new environment
+- `--name python_dev`: specify the name of the new environment as "python_dev"
+- `python=3.12.7`: specify the Python version to install as 3.12.7
+
+![Create Environment](/resources/_gen/images/conda_activate.png)
+
+### 3.2 Activate Virtual Environment
+
+```shell
+conda activate python_dev
 ```
 
-## 8. Miniconda and CI/CD Integration
+### 3.3 Install Required Modules
 
-Example configuration in GitHub Actions:
-```yaml
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: conda-incubator/setup-miniconda@v2
-        with:
-          activate-environment: myenv
-          environment-file: environment.yml
+```shell
+conda install jupyterlab pyecharts pandas numpy matplotlib
 ```
 
-## 9. Common Issues and Debugging
+**Command Structure Analysis**:
 
-### **Conda Command Not Found**
-- Check PATH configuration (Linux/macOS requires manual addition).
-- Restart terminal or execute `source ~/.bashrc`.
+- `conda install`: conda package installation command
+- `jupyterlab pyecharts pandas numpy matplotlib`: list of packages to install (multiple packages separated by spaces)
 
-### **Environment Activation Failure**
-- Confirm Shell type (e.g., PowerShell requires running `conda init` first).
+### 3.4 Launch Jupyter Lab
 
-### **Package Installation Conflicts**
-- Use `conda install --freeze-installed` to avoid upgrading existing packages.
+After successful installation, run the **jupyter lab** command, create a python_dev folder and a data_analyse.ipynb file.
 
-## 10. Conclusion
-
-Miniconda provides a lightweight Python environment management solution. Combined with mirrors and virtual environments, it efficiently manages dependencies across multiple projects. Through advanced techniques (such as environment export, CI/CD integration), it can further adapt to enterprise-level development needs. It's recommended to prioritize using `conda` for package installation, only mixing with `pip` when necessary.
+![Data Analysis File](/resources/_gen/images/data_analyse.png)  

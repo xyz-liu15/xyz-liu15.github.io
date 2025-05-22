@@ -40,188 +40,138 @@ repost:
 ---
 
 <!--more-->
+# Miniconda 教程
 
-## 1. Miniconda 简介
+## 1. 安装
 
-Miniconda 是 Anaconda 的轻量级版本，仅包含 `conda` 包管理工具、Python 和少量核心依赖。它适用于对磁盘空间敏感或需要自定义环境的用户，是管理 Python 虚拟环境和科学计算依赖的首选工具。
+在[这里](https://www.anaconda.com/download/success)访问官方网站以下载 Miniconda 最新版本。下载完成后，按照以下步骤进行安装：
 
-## 2. 安装与配置
+![安装步骤1](/resources/_gen/images/Miniconda_1.png)
 
-### Windows
+![安装步骤2](/resources/_gen/images/Miniconda_2.png)
 
-1. **下载安装包**  
-   `https://docs.conda.io/en/latest/miniconda.html` 选择 Windows 64-bit 版本。
+![安装步骤3](/resources/_gen/images/Miniconda_3.png)
 
-2. **运行安装程序**
-   - 勾选 `Add Miniconda to PATH`（需管理员权限）。
-   - 完成安装后重启终端。
+![安装步骤4](/resources/_gen/images/Miniconda_4.png)
 
-3. **验证安装**
-   ```bash
-   conda --version
-   ```
+![安装步骤5](/resources/_gen/images/Miniconda_5.png)
 
-### macOS
+> 注意：出现以下弹窗直接关闭即可。
 
-1. **下载安装包**  
-   选择 macOS 64-bit (bash) 或 Apple Silicon (M1/M2) 版本。
+![提示窗口](/resources/_gen/images/proceed.png)
 
-2. **终端安装**
-   ```bash
-   bash Miniconda3-latest-MacOSX-x86_64.sh
-   ```
+![安装步骤6](/resources/_gen/images/Miniconda_6.png)
 
-3. **配置 PATH**  
-   编辑 `~/.zshrc` 或 `~/.bash_profile`，添加：
-   ```bash
-   export PATH="/opt/miniconda3/bin:$PATH"
-   ```
+---
 
-### Linux
+## 2. 配置 Miniconda
 
-1. **下载安装脚本**
-   ```bash
-   wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-   ```
+首先，打开 Anaconda PowerShell Prompt 或者 Anaconda Prompt。依次运行以下代码以配置清华镜像源：
 
-2. **执行安装**
-   ```bash
-   bash Miniconda3-latest-Linux-x86_64.sh
-   ```
-
-3. **激活环境**
-   ```bash
-   source ~/.bashrc
-   ```
-
-## 3. Miniconda vs Anaconda
-
-|**特性**|**Miniconda**|**Anaconda**|
-|-|-|-|
-|**安装大小**|~100 MB|~3 GB|
-|**预装包**|仅核心工具|1500+ 科学计算包|
-|**适用场景**|自定义环境、轻量化部署|开箱即用、快速原型开发|
-|**灵活性**|高（按需安装）|低（预装大量包）|
-
-## 4. Conda 镜像源配置
-
-### 国内镜像源（加速下载）
-
-- **清华镜像**
-  ```bash
-  conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
-  conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free
-  conda config --set show_channel_urls yes
-  ```
-
-- **阿里云镜像**
-  ```bash
-  conda config --add channels https://mirrors.aliyun.com/anaconda/pkgs/main/
-  ```
-
-### 恢复默认源
-```bash
-conda config --remove-key channels
+```shell
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
+conda config --set show_channel_urls yes
 ```
 
-## 5. Python 虚拟环境管理
+### 2.1 配置命令解释
 
-### 创建与激活环境
-```bash
-# 创建环境（指定 Python 版本）
-conda create --name myenv python=3.9
+#### 添加镜像源
 
-# 激活环境
-conda activate myenv  # Windows/macOS/Linux（Shell 需支持）
-
-# 退出环境
-conda deactivate
+```shell
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
 ```
 
-### 管理环境列表
-```bash
-# 查看所有环境
-conda env list
+- `conda config`：conda 的配置管理命令
+- `--add channels`：添加一个新的软件源(channel)
+- `https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/`：清华大学提供的 conda-forge 镜像源地址
 
-# 删除环境
-conda env remove --name myenv
+**作用**：将清华大学的 conda-forge 镜像源添加到你的 conda 配置中，这样当你安装或更新软件包时，conda 会从这个国内的镜像源下载，速度会比从国际源下载快很多。
+
+#### 显示软件包来源
+
+```shell
+conda config --set show_channel_urls yes
 ```
 
-## 6. 包管理与依赖控制
+- `--set`：设置一个配置选项
+- `show_channel_urls`：控制是否显示软件包来源的URL
+- `yes`：启用此选项
 
-### 安装与卸载包
-```bash
-# 通过 conda 安装
-conda install numpy pandas
+**作用**：当这个选项设置为 yes 后：
 
-# 通过 pip 安装（优先使用 conda）
-pip install requests
+1. 在执行 `conda install` 或类似命令时，会显示每个软件包是从哪个具体的软件源URL下载的
+2. 在创建新环境或安装软件包时，输出信息会更详细，方便你确认软件包来源
+3. 有助于调试软件源配置问题
 
-# 卸载包
-conda uninstall numpy
+### 2.2 验证配置
+
+```shell
+conda config --show channels
+conda config --show custom_channels
 ```
 
-### 版本控制
-```bash
-# 安装指定版本
-conda install numpy=1.21.0
+#### 查看软件源列表
 
-# 更新包
-conda update numpy
+```shell
+conda config --show channels
 ```
 
-## 7. 高级使用技巧
+- `conda config`：conda 的配置管理命令
+- `--show`：显示配置信息
+- `channels`：指定要查看的配置项名称
 
-### 环境导出与共享
-```bash
-# 导出环境配置
-conda env export > environment.yml
+**作用**：显示当前 conda 配置中 `channels` 的值，即 conda 搜索和安装软件包时使用的软件源列表及其优先级顺序。
 
-# 从文件创建环境
-conda env create -f environment.yml
+#### 查看自定义软件源
+
+```shell
+conda config --show custom_channels
 ```
 
-### 依赖冲突解决
-```bash
-# 查看冲突包
-conda list --show-channel-urls
+- `custom_channels`：查看自定义命名的软件源配置
 
-# 使用严格模式安装
-conda install --strict-channel-priority
+**作用**：显示所有自定义命名的 channel 及其对应的 URL 映射关系。
+
+![配置结果](/resources/_gen/images/channels.png)
+
+---
+
+## 3. 创建和管理虚拟环境
+
+### 3.1 创建虚拟环境
+
+```shell
+conda create --name python_dev python=3.12.7
 ```
 
-### 跨平台环境迁移
-```bash
-# 生成平台无关的环境文件
-conda env export --from-history > environment.yml
+**命令结构解析**：
+
+- `conda create`：创建新环境的基础命令
+- `--name python_dev`：指定新环境的名称为 "python_dev"
+- `python=3.12.7`：指定要安装的 Python 版本为 3.12.7
+
+![创建环境](/resources/_gen/images/conda_activate.png)
+
+### 3.2 激活虚拟环境
+
+```shell
+conda activate python_dev
 ```
 
-## 8. Miniconda 与 CI/CD 集成
+### 3.3 安装所需模块
 
-在 GitHub Actions 中配置示例：
-```yaml
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: conda-incubator/setup-miniconda@v2
-        with:
-          activate-environment: myenv
-          environment-file: environment.yml
+```shell
+conda install jupyterlab pyecharts pandas numpy matplotlib
 ```
 
-## 9. 常见问题与调试
+**命令结构解析**：
 
-### **Conda 命令未找到**
-- 检查 PATH 配置（Linux/macOS 需手动添加）。
-- 重启终端或执行 `source ~/.bashrc`。
+- `conda install`：conda 包安装命令
+- `jupyterlab pyecharts pandas numpy matplotlib`：要安装的包列表（多个包用空格分隔）
 
-### **环境激活失败**
-- 确认 Shell 类型（如 PowerShell 需先运行 `conda init`）。
+### 3.4 启动 Jupyter Lab
 
-### **包安装冲突**
-- 使用 `conda install --freeze-installed` 避免升级现有包。
+安装成功后，运行 **jupyter lab** 命令，创建 python_dev 文件夹以及一个 data_analyse.ipynb 文件。
 
-## 10. 总结
-
-Miniconda 提供轻量化的 Python 环境管理方案，结合镜像源和虚拟环境，可高效管理多项目依赖。通过高级技巧（如环境导出、CI/CD 集成），可进一步适配企业级开发需求。建议优先使用 `conda` 安装包，仅在必要时混合 `pip`。
+![数据分析文件](/resources/_gen/images/data_analyse.png)
+        
