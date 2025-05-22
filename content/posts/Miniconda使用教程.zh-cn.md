@@ -46,21 +46,21 @@ repost:
 
 在[这里](https://www.anaconda.com/download/success)访问官方网站以下载 Miniconda 最新版本。下载完成后，按照以下步骤进行安装：
 
-![安装步骤1](/resources/_gen/images/Miniconda_1.png)
+![安装步骤1](/images/Miniconda_1.png)
 
-![安装步骤2](/resources/_gen/images/Miniconda_2.png)
+![安装步骤2](/images/Miniconda_2.png)
 
-![安装步骤3](/resources/_gen/images/Miniconda_3.png)
+![安装步骤3](/images/Miniconda_3.png)
 
-![安装步骤4](/resources/_gen/images/Miniconda_4.png)
+![安装步骤4](/images/Miniconda_4.png)
 
-![安装步骤5](/resources/_gen/images/Miniconda_5.png)
+![安装步骤5](/images/Miniconda_5.png)
 
 > 注意：出现以下弹窗直接关闭即可。
 
-![提示窗口](/resources/_gen/images/proceed.png)
+![提示窗口](/images/proceed.png)
 
-![安装步骤6](/resources/_gen/images/Miniconda_6.png)
+![安装步骤6](/images/Miniconda_6.png)
 
 ---
 
@@ -132,7 +132,7 @@ conda config --show custom_channels
 
 **作用**：显示所有自定义命名的 channel 及其对应的 URL 映射关系。
 
-![配置结果](/resources/_gen/images/channels.png)
+![配置结果](/images/channels.png)
 
 ---
 
@@ -150,7 +150,7 @@ conda create --name python_dev python=3.12.7
 - `--name python_dev`：指定新环境的名称为 "python_dev"
 - `python=3.12.7`：指定要安装的 Python 版本为 3.12.7
 
-![创建环境](/resources/_gen/images/conda_activate.png)
+![创建环境](/images/conda_activate.png)
 
 ### 3.2 激活虚拟环境
 
@@ -173,5 +173,5 @@ conda install jupyterlab pyecharts pandas numpy matplotlib
 
 安装成功后，运行 **jupyter lab** 命令，创建 python_dev 文件夹以及一个 data_analyse.ipynb 文件。
 
-![数据分析文件](/resources/_gen/images/data_analyse.png)
+![数据分析文件](/images/data_analyse.png)
         

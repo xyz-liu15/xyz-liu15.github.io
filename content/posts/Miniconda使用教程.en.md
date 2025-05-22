@@ -46,21 +46,21 @@ repost:
 
 Visit the official website [here](https://www.anaconda.com/download/success) to download the latest version of Miniconda. After downloading, follow these steps to install:
 
-![Installation Step 1](/resources/_gen/images/Miniconda_1.png)
+![Installation Step 1](/images/Miniconda_1.png)
 
-![Installation Step 2](/resources/_gen/images/Miniconda_2.png)
+![Installation Step 2](/images/Miniconda_2.png)
 
-![Installation Step 3](/resources/_gen/images/Miniconda_3.png)
+![Installation Step 3](/images/Miniconda_3.png)
 
-![Installation Step 4](/resources/_gen/images/Miniconda_4.png)
+![Installation Step 4](/images/Miniconda_4.png)
 
-![Installation Step 5](/resources/_gen/images/Miniconda_5.png)
+![Installation Step 5](/images/Miniconda_5.png)
 
 > Note: If you see the following popup, simply close it.
 
-![Prompt Window](/resources/_gen/images/proceed.png)
+![Prompt Window](/images/proceed.png)
 
-![Installation Step 6](/resources/_gen/images/Miniconda_6.png)
+![Installation Step 6](/images/Miniconda_6.png)
 
 ---
 
@@ -132,7 +132,7 @@ conda config --show custom_channels
 
 **Purpose**: Displays all custom named channels and their corresponding URL mappings.
 
-![Configuration Result](/resources/_gen/images/channels.png)
+![Configuration Result](/images/channels.png)
 
 ---
 
@@ -150,7 +150,7 @@ conda create --name python_dev python=3.12.7
 - `--name python_dev`: specify the name of the new environment as "python_dev"
 - `python=3.12.7`: specify the Python version to install as 3.12.7
 
-![Create Environment](/resources/_gen/images/conda_activate.png)
+![Create Environment](/images/conda_activate.png)
 
 ### 3.2 Activate Virtual Environment
 
@@ -173,4 +173,4 @@ conda install jupyterlab pyecharts pandas numpy matplotlib
 
 After successful installation, run the **jupyter lab** command, create a python_dev folder and a data_analyse.ipynb file.
 
-![Data Analysis File](/resources/_gen/images/data_analyse.png)  
+![Data Analysis File](/images/data_analyse.png)  
